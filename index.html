@@ -1,28 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Tu Nombre | Engineering Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Omar | Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-    <h1>Tu Nombre</h1>
-    <p>Engineering Student | 3D Design | Embedded Systems</p>
-</header>
+    <nav>
+        <div class="nav-container">
+            <span class="brand">ANGELOMAR<span class="dot">-ENG</span></span>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<section>
-    <h2>About Me</h2>
-    <p>
-        Estudiante enfocado en diseño mecánico, modelado 3D en Fusion 360 
-        y desarrollo de sistemas embebidos con Arduino y ESP32.
-    </p>
-</section>
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <span class="badge">Aspirante a Ingeniería Mecatrónica</span>
+                <h1>Construyendo sistemas donde el <span class="accent">software</span> encuentra la <span class="accent">mecánica</span>.</h1>
+                <p>Estudiante especializado en automatización industrial, diseño CAD y control de sistemas embebidos.</p>
+            </div>
+        </section>
 
-<section>
-    <h2>Projects</h2>
-    <p>Próximamente...</p>
-</section>
+        <section id="about" class="section-container">
+            <h2 class="section-number">01.</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 class="section-title">Sobre mi trayectoria</h3>
+                    <p>Soy un entusiasta de la tecnología con un enfoque multidisciplinario. Mi objetivo es resolver problemas complejos mediante la integración de PLCs, diseño 3D y programación de bajo nivel.</p>
+                </div>
+                <div class="stats-box">
+                    <div class="stat-item"><strong>+3</strong> Proyectos de Automatización</div>
+                    <div class="stat-item"><strong>Certificación</strong> [Nombre si tienes o "En proceso"]</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="section-container">
+            <h2 class="section-number">02.</h2>
+            <h3 class="section-title">Portafolio de Proyectos</h3>
+            
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-meta">2024 • Mecatrónica</div>
+                    <div class="project-details">
+                        <h4>Sistema de Control de Procesos con PLC</h4>
+                        <p>Implementación de lógica de escalera para optimización de ciclos industriales. Enfoque en eficiencia energética y seguridad.</p>
+                        <div class="tech-stack"><span>Ladder Logic</span> <span>HMI</span> <span>Sensores</span></div>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-meta">2023 • Diseño 3D</div>
+                    <div class="project-details">
+                        <h4>Modelado Mecánico de Precisión</h4>
+                        <p>Diseño de ensamble mecánico complejo en Fusion 360, optimizado para manufactura aditiva y tolerancias críticas.</p>
+                        <div class="tech-stack"><span>CAD</span> <span>CAE</span> <span>Prototipado</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades" class="section-container">
+            <h2 class="section-number">03.</h2>
+            <h3 class="section-title">Competencias Técnicas</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h5>Hardware & Control</h5>
+                    <ul>
+                        <li>PLCs (Allen Bradley/Siemens)</li>
+                        <li>Microcontroladores (ESP32/Arduino)</li>
+                        <li>Sistemas Neumáticos</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h5>Software & Diseño</h5>
+                    <ul>
+                        <li>C++ / Python</li>
+                        <li>Autodesk Fusion 360</li>
+                        <li>Git / GitHub</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>angelomar-eng // 2026</p>
+    </footer>
 
 </body>
 </html>
