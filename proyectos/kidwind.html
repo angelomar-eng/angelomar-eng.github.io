@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KidWind 2025 | Angel Omar</title>
-    <link rel="stylesheet" href="../style.css"> <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>KidWind Challenge 2025 | Documentación Técnica</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body class="subpage">
 
@@ -15,38 +16,94 @@
     </nav>
 
     <main class="section-container">
-        <span class="badge">Energía Eólica & Sustentabilidad</span>
-        <h1>KidWind Challenge 2025</h1>
-        <p class="project-subtitle">Diseño y optimización de una turbina eólica de alta eficiencia.</p>
+        <header class="project-header">
+            <span class="badge">Competencia Nacional 2025</span>
+            <h1>KidWind Challenge: Turbina Eólica</h1>
+            <p>Optimización aerodinámica y sistemas de transmisión de potencia.</p>
+        </header>
 
-        <div class="doc-grid">
-            <div class="doc-text">
-                <h3>Resumen del Proyecto</h3>
-                <p>Este proyecto consistió en el diseño, prototipado y pruebas de una turbina eólica a escala para maximizar la generación de energía eléctrica bajo condiciones de viento controladas.</p>
-                
-                <h3>Desarrollo Técnico</h3>
-                <ul>
-                    <li><strong>Diseño de Aspas:</strong> Modelado en Fusion 360 buscando el ángulo de ataque óptimo.</li>
-                    <li><strong>Manufactura:</strong> Impresión 3D con materiales ligeros para reducir la inercia de arranque.</li>
-                    <li><strong>Electrónica:</strong> Sistema de medición de voltaje y corriente en tiempo real.</li>
-                </ul>
-
-                <div class="highlight-box" style="margin-top: 2rem;">
-                    <h4>Resultados clave</h4>
-                    <p>Logramos una generación de [X] Watts constantes, superando las pruebas de estabilidad mecánica.</p>
+        <section class="doc-section">
+            <h2 class="section-number">01.</h2>
+            <h3>Diseño y Modelado CAD (Fusion 360)</h3>
+            <p>El diseño se centró en la modularidad. El aspa fue seccionada en tres partes para facilitar la experimentación con diferentes perfiles alares.</p>
+            
+            <div class="image-grid">
+                <div class="card">
+                    <img src="../img/kidwind/render-completo.jpg" alt="Render ensamble completo">
+                    <p class="caption">Ensamble final: Aspas + Hub</p>
+                </div>
+                <div class="card">
+                    <img src="../img/kidwind/aspa-design.jpg" alt="Aspa modo diseño">
+                    <p class="caption">Geometría del aspa (Modo Design)</p>
+                </div>
+                <div class="card">
+                    <img src="../img/kidwind/hub-design.jpg" alt="Hub modo diseño">
+                    <p class="caption">Diseño del Hub central</p>
                 </div>
             </div>
+        </section>
 
-            <div class="doc-visuals">
-                <div class="placeholder-img">Render de la Turbina (Fusion 360)</div>
-                <div class="placeholder-img">Foto del Ensamblaje Real</div>
-                <div class="placeholder-img">Gráfica de Rendimiento</div>
+        <section class="doc-section">
+            <h2 class="section-number">02.</h2>
+            <h3>Planos Técnicos y Despiece</h3>
+            <p>Documentación necesaria para la estandarización y ensamble de precisión.</p>
+            
+            <div class="blueprints-grid">
+                <div class="blueprint-item">
+                    <img src="../img/kidwind/plano-ensamble.jpg" alt="Plano de ensamble">
+                    <span>Vista General: 3 Aspas Ensambladas</span>
+                </div>
+                <div class="blueprint-item">
+                    <img src="../img/kidwind/plano-hub.jpg" alt="Plano del hub">
+                    <span>Detalle Mecánico: Hub Central</span>
+                </div>
+                <div class="blueprint-item">
+                    <img src="../img/kidwind/plano-divisiones.jpg" alt="Plano de secciones">
+                    <span>Análisis de Secciones: Aspa dividida en 3 partes</span>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">03.</h2>
+            <h3>Manufactura Aditiva y Transmisión</h3>
+            <div class="grid-2">
+                <div>
+                    <p>Utilicé impresión 3D para materializar los componentes. Un punto crítico fue el <strong>sistema de engranajes</strong>, diseñado para optimizar la relación de rotación entre las aspas y el generador DC.</p>
+                    <ul class="tech-list">
+                        <li><strong>Material:</strong> [Ej: PLA+ / PETG]</li>
+                        <li><strong>Base del aspa:</strong> Reforzada para soportar fuerzas centrífugas.</li>
+                        <li><strong>Relación de engranes:</strong> [Aquí pondrás la relación, ej: 3:1]</li>
+                    </ul>
+                </div>
+                <div class="video-container">
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/TU_ID_VIDEO_IMPRESORA" frameborder="0" allowfullscreen></iframe>
+                    <p class="caption">Proceso de impresión 3D de componentes críticos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">04.</h2>
+            <h3>Desempeño y Validación</h3>
+            <div class="video-main">
+                <iframe width="100%" height="450" src="https://www.youtube.com/embed/TU_ID_VIDEO_COMPETENCIA" frameborder="0" allowfullscreen></iframe>
+                <p class="caption">Prueba de funcionamiento en túnel de viento durante KidWind 2025.</p>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">05.</h2>
+            <h3>Certificación y Equipo</h3>
+            <div class="recognition-grid">
+                <img src="../img/kidwind/certificado.jpg" alt="Certificado KidWind" class="cert-img">
+                <img src="../img/kidwind/equipo.jpg" alt="Foto del equipo" class="team-img">
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>angelomar-eng // 2026</p>
+        <p>angelomar-eng // Portafolio de Ingeniería</p>
     </footer>
 
 </body>
