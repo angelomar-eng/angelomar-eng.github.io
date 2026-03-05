@@ -84,3 +84,44 @@ footer { padding: 5rem 10%; border-top: 1px solid var(--border); text-align: cen
     .grid-2, .project-item { flex-direction: column; }
     .nav-links { display: none; }
 }
+
+.highlight-box {
+    border: 1px solid var(--accent);
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #00d2ff0a; /* Un azul muy transparente */
+}
+
+.view-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.view-more:hover {
+    border-bottom: 1px solid var(--accent);
+}
+
+.doc-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.placeholder-img {
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
