@@ -125,3 +125,59 @@ footer { padding: 5rem 10%; border-top: 1px solid var(--border); text-align: cen
     margin-bottom: 1rem;
     border-radius: 8px;
 }
+
+/* Estilos específicos para documentación técnica */
+.project-header { text-align: center; margin-bottom: 4rem; }
+.project-subtitle { color: var(--text-secondary); font-size: 1.2rem; }
+
+.doc-section { margin-bottom: 6rem; }
+
+.image-grid, .blueprints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card img, .blueprint-item img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.card:hover img { border-color: var(--accent); }
+
+.caption {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.video-container { margin-top: 1rem; }
+.video-main { margin-top: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+
+.tech-list { margin-top: 1rem; color: var(--text-secondary); padding-left: 1.2rem; }
+
+.recognition-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cert-img, .team-img {
+    max-width: 45%;
+    border-radius: 8px;
+    filter: grayscale(20%);
+    transition: 0.3s;
+}
+
+.cert-img:hover, .team-img:hover { filter: grayscale(0%); }
+
+@media (max-width: 768px) {
+    .cert-img, .team-img { max-width: 100%; }
+}
