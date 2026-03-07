@@ -127,24 +127,48 @@ footer { padding: 5rem 10%; border-top: 1px solid var(--border); text-align: cen
 }
 
 /* Estilos específicos para documentación técnica */
-.project-header { text-align: center; margin-bottom: 4rem; }
+/* Ajuste para centrar el título y cabecera */
+.project-header { 
+    text-align: center; 
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Asegura el centrado en flexbox */
+}
+
+.project-header h1 {
+    margin: 1rem auto;
+    width: 100%;
+}
+
 .project-subtitle { color: var(--text-secondary); font-size: 1.2rem; }
 
 .doc-section { margin-bottom: 6rem; }
 
 .image-grid, .blueprints-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    /* Esto hará que se vean 3 arriba y 2 abajo, o se ajusten al ancho de pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 2rem;
     margin-top: 2rem;
+}
+
+.blueprint-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .card img, .blueprint-item img {
     width: 100%;
-    border-radius: 8px;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Mantiene la proporción de plano técnico */
+    object-fit: contain;  /* Evita que el plano se corte */
+    background: #fdfdfd;  /* Fondo claro por si el plano es blanco */
+    padding: 10px;
     border: 1px solid var(--border);
-    transition: 0.3s;
-}
+    border-radius: 4px;
 
 .card:hover img { border-color: var(--accent); }
 
