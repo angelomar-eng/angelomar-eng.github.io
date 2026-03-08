@@ -4,6 +4,7 @@
 :root {
     --bg: #0a0a0c;
     --surface: #121214;
+    --surface-hover: #1a1a1d; /* Fondo ligeramente más claro para hover */
     --accent: #00d2ff;
     --accent-hover: #00a8cc;
     --text-primary: #ffffff;
@@ -24,7 +25,7 @@ body {
 }
 
 /* =========================================
-   NAVEGACIÓN
+   NAVEGACIÓN (Sobrilla y responsiva)
    ========================================= */
 nav {
     padding: 1.5rem 10%;
@@ -44,7 +45,7 @@ nav {
 .nav-links a:hover { color: var(--accent); }
 
 /* =========================================
-   ESTRUCTURA DE SECCIONES
+   ESTRUCTURA DE SECCIONES GENERALES
    ========================================= */
 .section-container { padding: 5rem 10%; border-top: 1px solid var(--border); }
 .section-number { font-family: var(--font-mono); color: var(--accent); font-size: 1rem; margin-bottom: 1rem; }
@@ -56,19 +57,76 @@ nav {
 .badge { color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; }
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; line-height: 1.1; max-width: 900px; }
 .accent { color: var(--accent); }
+#hero p { color: var(--text-secondary); max-width: 600px; font-size: 1.2rem; margin-top: 1.5rem; }
+
+/* Habilidades (Grid) */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.skill-category h5 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
+.skill-category ul { list-style: none; color: var(--text-secondary); }
+.skill-category li { margin-bottom: 0.5rem; position: relative; padding-left: 1.2rem; }
+.skill-category li::before { content: "→"; position: absolute; left: 0; color: var(--border); }
+.highlight-box { border: 1px solid var(--accent); padding: 1.5rem; border-radius: 8px; background: #00d2ff0a; }
 
 /* =========================================
-   PROYECTOS Y PLANOS (GRIDS)
+   LISTA DE PROYECTOS (Con Animación)
    ========================================= */
+.project-item {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem; /* Más espacio interno */
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease-in-out; /* Transición suave */
+    border-radius: 8px; /* Preparamos bordes para el hover */
+    position: relative;
+    overflow: hidden;
+}
+
+/* LA ANIMACIÓN PROFESIONAL */
+.project-item:hover {
+    background-color: var(--surface); /* Cambia fondo */
+    transform: translateY(-5px); /* Se eleva sutilmente */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Da profundidad */
+    border-bottom-color: transparent; /* Oculta la línea divisoria */
+}
+
+/* Indicador de acento en el hover */
+.project-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: var(--accent);
+    transform: scaleY(0); /* Oculto por defecto */
+    transition: transform 0.3s ease;
+}
+
+.project-item:hover::after {
+    transform: scaleY(1); /* Se muestra en el hover */
+}
+
+.project-meta { font-family: var(--font-mono); color: var(--text-secondary); min-width: 150px; font-size: 0.8rem; margin-top: 0.3rem; }
+.project-details h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: white; transition: 0.3s; }
+.project-item:hover .project-details h4 { color: var(--accent); }
+.view-more { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; border-bottom: 1px solid transparent; transition: 0.3s; }
+.view-more:hover { border-bottom: 1px solid var(--accent); }
+
+/* =========================================
+   KIDWIND: IMÁGENES Y PLANOS (GRIDS)
+   ========================================= */
+.project-header { text-align: center; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; }
 .image-grid, .blueprints-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .card img, .blueprint-item img {
     width: 100%;
+    height: auto;
     border-radius: 8px;
     border: 1px solid var(--border);
     background: #18181b;
@@ -77,69 +135,76 @@ h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; line-height: 1.1; ma
 
 .blueprint-item img {
     aspect-ratio: 16/9;
-    object-fit: contain;
+    object-fit: contain; /* No corta el plano técnico */
     padding: 10px;
-    background: #fdfdfd; /* Fondo claro para resaltar planos técnicos */
+    background: #fdfdfd;
 }
 
-.caption {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    margin-top: 0.8rem;
-    text-align: center;
-}
+.caption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: center; }
 
-/* =========================================
-   VIDEOS (ESTÁNDAR Y SHORTS)
-   ========================================= */
+/* Videos y Shorts */
 .video-main { margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.video-short-container { display: flex; justify-content: center; margin: 3rem 0; }
+.video-short-container iframe { border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 100%; }
 
-/* Contenedor especial para Shorts (Vertical) */
-.video-short-container {
+/* Botones */
+.btn-download { display: inline-flex; align-items: center; gap: 10px; background-color: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 12px 24px; border-radius: 5px; text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600; transition: 0.3s; margin-top: 2rem; }
+.btn-download:hover { background-color: var(--accent); color: var(--bg); }
+
+/* Reconocimiento (Certificado/Equipo) */
+.recognition-grid {
     display: flex;
-    justify-content: center;
-    margin: 3rem 0;
-}
-
-.video-short-container iframe {
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-/* =========================================
-   BOTONES Y DESCARGAS
-   ========================================= */
-.btn-download {
-    display: inline-flex;
+    gap: 2rem;
     align-items: center;
-    gap: 10px;
-    background-color: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 12px 24px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: 0.3s;
-    margin-top: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
-.btn-download:hover {
-    background-color: var(--accent);
-    color: var(--bg);
+.cert-img, .team-img {
+    max-width: 45%; /* En PC van lado a lado */
+    height: auto; /* Mantiene proporción */
+    border-radius: 8px;
+    filter: grayscale(20%);
+    transition: 0.3s;
+    border: 1px solid var(--border);
 }
+
+.cert-img:hover, .team-img:hover { filter: grayscale(0%); border-color: var(--accent); }
 
 /* =========================================
-   FOOTER Y MÓVIL
+   FOOTER
    ========================================= */
-footer { padding: 5rem 10%; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; }
+footer { padding: 5rem 10%; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: auto; }
 
+/* =========================================
+   OPTIMIZACIÓN MÓVIL (RESPONSIVE)
+   ========================================= */
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    .nav-links { display: none; }
-    .blueprints-grid { grid-template-columns: 1fr; }
+    /* Reduce el aire lateral para que el contenido no se vea pinchado */
+    nav { padding: 1rem 5%; }
+    #hero { padding: 8rem 5% 4rem 5%; }
+    .section-container { padding: 3rem 5%; }
+    h1 { font-size: 2.2rem; }
+    
+    .nav-links { display: none; } /* Oculta menú en móvil por simplicidad */
+    
+    /* Proyectos en Index */
+    .project-item { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+    .project-meta { min-width: auto; margin-bottom: 0.5rem; color: var(--accent); }
+    
+    /* Grids en KidWind */
+    .image-grid, .blueprints-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    
+    /* ARREGLO CRÍTICO: Imágenes de Certificado y Equipo en móvil */
+    .recognition-grid {
+        flex-direction: column; /* Se apilan verticalmente */
+        gap: 1.5rem;
+    }
+    
+    .cert-img, .team-img {
+        max-width: 100%; /* Ocupan todo el ancho disponible */
+        width: 100%;     /* Fuerza a llenar el ancho del grid safe */
+        height: auto;    /* Crucial para no cortarlas y mantener proporción */
+    }
 }
