@@ -4,7 +4,7 @@
 :root {
     --bg: #0a0a0c;
     --surface: #121214;
-    --surface-hover: #1a1a1d;
+    --surface-hover: #1a1a1d; /* Fondo ligeramente más claro para hover */
     --accent: #00d2ff;
     --accent-hover: #00a8cc;
     --text-primary: #ffffff;
@@ -13,9 +13,9 @@
     --font-main: 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 }
- 
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
 body {
     background-color: var(--bg);
     color: var(--text-primary);
@@ -23,9 +23,9 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
 }
- 
+
 /* =========================================
-   NAVEGACIÓN
+   NAVEGACIÓN (Sobrilla y responsiva)
    ========================================= */
 nav {
     padding: 1.5rem 10%;
@@ -36,56 +36,60 @@ nav {
     backdrop-filter: blur(10px);
     z-index: 100;
 }
- 
+
 .nav-container { display: flex; justify-content: space-between; align-items: center; }
 .brand { font-weight: 800; letter-spacing: -1px; font-size: 1.1rem; text-decoration: none; color: white; }
 .dot { color: var(--accent); }
 .nav-links { list-style: none; display: flex; gap: 2rem; }
 .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; transition: 0.3s; }
 .nav-links a:hover { color: var(--accent); }
- 
+
 /* =========================================
-   ESTRUCTURA DE SECCIONES
+   ESTRUCTURA DE SECCIONES GENERALES
    ========================================= */
 .section-container { padding: 5rem 10%; border-top: 1px solid var(--border); }
 .section-number { font-family: var(--font-mono); color: var(--accent); font-size: 1rem; margin-bottom: 1rem; }
 .section-title { font-size: 2rem; margin-bottom: 3rem; }
 .doc-section { margin-bottom: 6rem; }
- 
+
 /* Hero Section */
 #hero { padding: 10rem 10% 5rem 10%; text-align: left; }
 .badge { color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; }
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; line-height: 1.1; max-width: 900px; }
 .accent { color: var(--accent); }
 #hero p { color: var(--text-secondary); max-width: 600px; font-size: 1.2rem; margin-top: 1.5rem; }
- 
-/* Habilidades */
+
+/* Habilidades (Grid) */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
 .skill-category h5 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
 .skill-category ul { list-style: none; color: var(--text-secondary); }
 .skill-category li { margin-bottom: 0.5rem; position: relative; padding-left: 1.2rem; }
 .skill-category li::before { content: "→"; position: absolute; left: 0; color: var(--border); }
 .highlight-box { border: 1px solid var(--accent); padding: 1.5rem; border-radius: 8px; background: #00d2ff0a; }
- 
+
 /* =========================================
-   LISTA DE PROYECTOS
+   LISTA DE PROYECTOS (Con Animación)
    ========================================= */
 .project-item {
     display: flex;
     gap: 2rem;
-    padding: 2.5rem;
+    padding: 2.5rem; /* Más espacio interno */
     border-bottom: 1px solid var(--border);
-    transition: all 0.4s ease-in-out;
-    border-radius: 8px;
+    transition: all 0.4s ease-in-out; /* Transición suave */
+    border-radius: 8px; /* Preparamos bordes para el hover */
     position: relative;
     overflow: hidden;
 }
+
+/* LA ANIMACIÓN PROFESIONAL */
 .project-item:hover {
-    background-color: var(--surface);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border-bottom-color: transparent;
+    background-color: var(--surface); /* Cambia fondo */
+    transform: translateY(-5px); /* Se eleva sutilmente */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Da profundidad */
+    border-bottom-color: transparent; /* Oculta la línea divisoria */
 }
+
+/* Indicador de acento en el hover */
 .project-item::after {
     content: "";
     position: absolute;
@@ -94,130 +98,60 @@ h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; line-height: 1.1; ma
     height: 100%;
     width: 4px;
     background-color: var(--accent);
-    transform: scaleY(0);
+    transform: scaleY(0); /* Oculto por defecto */
     transition: transform 0.3s ease;
 }
-.project-item:hover::after { transform: scaleY(1); }
+
+.project-item:hover::after {
+    transform: scaleY(1); /* Se muestra en el hover */
+}
+
 .project-meta { font-family: var(--font-mono); color: var(--text-secondary); min-width: 150px; font-size: 0.8rem; margin-top: 0.3rem; }
 .project-details h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: white; transition: 0.3s; }
 .project-item:hover .project-details h4 { color: var(--accent); }
 .view-more { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; border-bottom: 1px solid transparent; transition: 0.3s; }
 .view-more:hover { border-bottom: 1px solid var(--accent); }
- 
+
 /* =========================================
-   IMÁGENES Y PLANOS
+   KIDWIND: IMÁGENES Y PLANOS (GRIDS)
    ========================================= */
 .project-header { text-align: center; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; }
-.project-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-top: 1rem; }
-.project-header p { color: var(--text-secondary); max-width: 600px; font-size: 1rem; margin-top: 1rem; }
- 
 .image-grid, .blueprints-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
-    width: 100%;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
- 
+
 .card img, .blueprint-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     border: 1px solid var(--border);
     background: #18181b;
-    display: block;
     transition: 0.3s;
 }
+
 .blueprint-item img {
     aspect-ratio: 16/9;
-    object-fit: contain;
+    object-fit: contain; /* No corta el plano técnico */
     padding: 10px;
     background: #fdfdfd;
 }
-.blueprint-item span {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    margin-top: 0.6rem;
-    text-align: center;
-}
+
 .caption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: center; }
- 
-/* =========================================
-   GRID 2 COLUMNAS (Texto + Video)
-   ========================================= */
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-    margin-top: 1.5rem;
-}
-.grid-2-text { color: var(--text-secondary); }
-.grid-2-text p { margin-bottom: 1rem; }
-.tech-list { list-style: none; margin-top: 1rem; color: var(--text-secondary); }
-.tech-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-.tech-list li:last-child { border-bottom: none; }
- 
-/* =========================================
-   VIDEOS RESPONSIVOS — FIX PRINCIPAL
-   =========================================
-   Técnica: padding-top 56.25% = ratio 16:9
-   El iframe se posiciona absolute llenando
-   todo el contenedor relativo.
-   ========================================= */
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: #000;
-}
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
- 
-/* Versión centrada con ancho máximo */
-.video-wrapper--centered {
-    max-width: 720px;
-    margin: 0 auto;
-}
- 
-/* Compatibilidad: ocultar el antiguo contenedor si queda en algún sitio */
-.video-short-container { display: none; }
- 
-/* =========================================
-   BOTONES
-   ========================================= */
-.btn-download {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 12px 24px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: 0.3s;
-    margin-top: 2rem;
-}
+
+/* Videos y Shorts */
+.video-main { margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.video-short-container { display: flex; justify-content: center; margin: 3rem 0; }
+.video-short-container iframe { border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 100%; }
+
+/* Botones */
+.btn-download { display: inline-flex; align-items: center; gap: 10px; background-color: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 12px 24px; border-radius: 5px; text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600; transition: 0.3s; margin-top: 2rem; }
 .btn-download:hover { background-color: var(--accent); color: var(--bg); }
- 
-/* =========================================
-   RECONOCIMIENTO
-   ========================================= */
+
+/* Reconocimiento (Certificado/Equipo) */
 .recognition-grid {
     display: flex;
     gap: 2rem;
@@ -226,64 +160,84 @@ h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; line-height: 1.1; ma
     flex-wrap: wrap;
     width: 100%;
 }
+
 .cert-img, .team-img {
-    max-width: 45%;
-    height: auto;
+    max-width: 45%; /* En PC van lado a lado */
+    height: auto; /* Mantiene proporción */
     border-radius: 8px;
     filter: grayscale(20%);
     transition: 0.3s;
     border: 1px solid var(--border);
 }
+
 .cert-img:hover, .team-img:hover { filter: grayscale(0%); border-color: var(--accent); }
- 
+
 /* =========================================
    FOOTER
    ========================================= */
 footer { padding: 5rem 10%; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: auto; }
- 
+
 /* =========================================
-   CÓDIGO WINDOW
-   ========================================= */
-.code-window { background: #1e1e1e; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.85rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.code-header { background: #2d2d2d; padding: 10px; display: flex; gap: 6px; }
-.code-header span { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-.code-header span:nth-child(1) { background: #ff5f56; }
-.code-header span:nth-child(2) { background: #ffbd2e; }
-.code-header span:nth-child(3) { background: #27c93f; }
-pre { padding: 20px; color: #d4d4d4; overflow-x: auto; }
-code { color: var(--accent); }
- 
-/* =========================================
-   RESPONSIVO MÓVIL  (≤ 768px)
+   OPTIMIZACIÓN MÓVIL (RESPONSIVE)
    ========================================= */
 @media (max-width: 768px) {
+    /* Reduce el aire lateral para que el contenido no se vea pinchado */
     nav { padding: 1rem 5%; }
     #hero { padding: 8rem 5% 4rem 5%; }
     .section-container { padding: 3rem 5%; }
     h1 { font-size: 2.2rem; }
-    .nav-links { display: none; }
- 
+    
+    .nav-links { display: none; } /* Oculta menú en móvil por simplicidad */
+    
+    /* Proyectos en Index */
     .project-item { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
     .project-meta { min-width: auto; margin-bottom: 0.5rem; color: var(--accent); }
- 
+    
+    /* Grids en KidWind */
     .image-grid, .blueprints-grid { grid-template-columns: 1fr; gap: 1.5rem; }
- 
-    /* Grid texto+video → apilado */
-    .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
- 
-    /* Certificado/Equipo apilados */
-    .recognition-grid { flex-direction: column; gap: 1.5rem; }
-    .cert-img, .team-img { max-width: 100%; width: 100%; }
+    
+    /* ARREGLO CRÍTICO: Imágenes de Certificado y Equipo en móvil */
+    .recognition-grid {
+        flex-direction: column; /* Se apilan verticalmente */
+        gap: 1.5rem;
+    }
+    
+    .cert-img, .team-img {
+        max-width: 100%; /* Ocupan todo el ancho disponible */
+        width: 100%;     /* Fuerza a llenar el ancho del grid safe */
+        height: auto;    /* Crucial para no cortarlas y mantener proporción */
+    }
 }
- 
-/* =========================================
-   RESPONSIVO TABLET  (769px – 1024px)
-   ========================================= */
-@media (min-width: 769px) and (max-width: 1024px) {
-    nav { padding: 1.2rem 6%; }
-    .section-container { padding: 4rem 6%; }
-    .grid-2 { gap: 2rem; }
-    .blueprints-grid { grid-template-columns: repeat(2, 1fr); }
-    .cert-img, .team-img { max-width: 48%; }
+/* Ventana de Código Estilo Dark Mode */
+.code-window {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
+.code-header {
+    background: #2d2d2d;
+    padding: 10px;
+    display: flex;
+    gap: 6px;
+}
+
+.code-header span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.code-header span:nth-child(1) { background: #ff5f56; }
+.code-header span:nth-child(2) { background: #ffbd2e; }
+.code-header span:nth-child(3) { background: #27c93f; }
+
+pre { padding: 20px; color: #d4d4d4; overflow-x: auto; }
+code { color: var(--accent); }
+
  
