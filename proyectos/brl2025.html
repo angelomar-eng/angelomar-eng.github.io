@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRL 1lb RC | Angel Omar</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body class="subpage">
 
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="brand">← VOLVER AL PORTAFOLIO</a>
+        </div>
+    </nav>
+
+    <main class="section-container">
+        <header class="project-header">
+            <span class="badge">Baja Robotics League 2025</span>
+            <h1>Sumo RC 1lb: Ingeniería de Combate</h1>
+            <p>Diseño de chasis de alta resistencia y control inalámbrico mediante ESP32.</p>
+        </header>
+
+        <section class="doc-section">
+            <h2 class="section-number">01.</h2>
+            <h3>Diseño CAD y Layout Interno</h3>
+            <p>El desafío principal fue la distribución de componentes para mantener un centro de gravedad bajo. Se utilizó una vista de sección para optimizar el espacio del ESP32 y el cableado.</p>
+            
+            <div class="image-grid">
+                <div class="card">
+                    <img src="../img/brl/render-sumo.jpg" alt="Render principal del Sumo">
+                    <p class="caption">Render Final: Estética y Funcionalidad</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl/chasis-design.jpg" alt="Vista modo diseño">
+                    <p class="caption">Chasis: Estructura de carga</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl/corte-interno.jpg" alt="Vista de corte">
+                    <p class="caption">Vista de Corte: Alojamiento del ESP32</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">02.</h2>
+            <h3>Documentación de Manufactura</h3>
+            <p>Planos detallados para la fabricación de piezas críticas. El diseño de la llanta incluye un patrón de agarre optimizado para la arena de competencia.</p>
+            
+            <div class="blueprints-grid">
+                <div class="blueprint-item">
+                    <img src="../img/brl/plano-chasis.jpg" alt="Plano chasis">
+                    <span>Estructura Base</span>
+                </div>
+                <div class="blueprint-item">
+                    <img src="../img/brl/plano-techo.jpg" alt="Plano techo">
+                    <span>Cubierta de Protección</span>
+                </div>
+                <div class="blueprint-item">
+                    <img src="../img/brl/plano-llanta.jpg" alt="Plano llanta">
+                    <span>Tracción y Geometría</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="../docs/Planos_Sumo_BRL_AngelOmar.pdf" download class="btn-download">
+                    <span>⬇</span> DESCARGAR SET DE PLANOS (PDF)
+                </a>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">03.</h2>
+            <h3>Sistema de Control (ESP32)</h3>
+            <div class="grid-2">
+                <div class="code-window">
+                    <div class="code-header"><span></span><span></span><span></span></div>
+                    <pre><code>
+// Control de Motores PWM - BRL 2025
+void moveMotors(int speedL, int speedR) {
+  ledcWrite(channelL, abs(speedL));
+  ledcWrite(channelR, abs(speedR));
+  
+  digitalWrite(IN1, speedL > 0 ? HIGH : LOW);
+  digitalWrite(IN2, speedL > 0 ? LOW : HIGH);
+}
+                    </code></pre>
+                </div>
+                <div>
+                    <p>Implementación de un servidor Web o Bluetooth para el control remoto. Se priorizó la baja latencia para mejorar la respuesta en combate.</p>
+                    <ul class="tech-list">
+                        <li><strong>MCU:</strong> ESP32 Dual Core</li>
+                        <li><strong>Protocolo:</strong> Wi-Fi / ESP-NOW</li>
+                        <li><strong>Driver:</strong> [Tu Driver, ej: TB6612FNG]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">04.</h2>
+            <h3>Manufactura Aditiva y Prototipado</h3>
+            <div class="video-short-container">
+                <iframe width="315" height="560" src="https://www.youtube.com/embed/TU_ID_IMPRESION" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p class="caption">Proceso de impresión del chasis en [Material].</p>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">05.</h2>
+            <h3>Validación y Competencia</h3>
+            <div class="video-main">
+                <iframe width="100%" height="450" src="https://www.youtube.com/embed/TU_ID_COMPETENCIA" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="image-grid" style="margin-top: 2rem;">
+                <div class="card">
+                    <img src="../img/brl/sumo-ensamblado.jpg" alt="Sumo final">
+                    <p class="caption">Prototipo Final Ensamblado</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl/certificado-brl.jpg" alt="Certificado">
+                    <p class="caption">Certificado de Participación</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>angelomar-eng // BRL Project 2025</p>
+    </footer>
+
+</body>
+</html>
