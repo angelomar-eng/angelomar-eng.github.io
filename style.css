@@ -4,7 +4,7 @@
 :root {
     --bg: #0a0a0c;
     --surface: #121214;
-    --surface-hover: #1a1a1d;
+    --surface-hover: #1a1a1d; /* Fondo ligeramente más claro para hover */
     --accent: #00d2ff;
     --accent-hover: #00a8cc;
     --text-primary: #ffffff;
@@ -22,11 +22,10 @@ body {
     font-family: var(--font-main);
     line-height: 1.6;
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 /* =========================================
-   NAVEGACIÓN
+   NAVEGACIÓN (Sobrilla y responsiva)
    ========================================= */
 nav {
     padding: 1.5rem 10%;
@@ -46,215 +45,197 @@ nav {
 .nav-links a:hover { color: var(--accent); }
 
 /* =========================================
-   ESTRUCTURA DE SECCIONES (INDEX Y PROYECTOS)
+   ESTRUCTURA DE SECCIONES GENERALES
    ========================================= */
 .section-container { padding: 5rem 10%; border-top: 1px solid var(--border); }
 .section-number { font-family: var(--font-mono); color: var(--accent); font-size: 1rem; margin-bottom: 1rem; }
-.section-title { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 800; }
+.section-title { font-size: 2rem; margin-bottom: 3rem; }
 .doc-section { margin-bottom: 6rem; }
 
 /* Hero Section */
 #hero { padding: 10rem 10% 5rem 10%; text-align: left; }
-.badge { color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; max-width: 900px; font-weight: 800; }
+.badge { color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-top: 2rem; line-height: 1.1; max-width: 900px; }
 .accent { color: var(--accent); }
 #hero p { color: var(--text-secondary); max-width: 600px; font-size: 1.2rem; margin-top: 1.5rem; }
 
-/* Grid de Habilidades */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-.skill-category { padding: 2rem; border: 1px solid var(--border); border-radius: 12px; }
-.skill-category h5 { color: var(--accent); margin-bottom: 1.5rem; font-size: 1.1rem; font-family: var(--font-mono); }
+/* Habilidades (Grid) */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.skill-category h5 { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
 .skill-category ul { list-style: none; color: var(--text-secondary); }
-.skill-category li { margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; }
-.skill-category li::before { content: "→"; position: absolute; left: 0; color: var(--accent); opacity: 0.5; }
-.highlight-box { border-color: var(--accent); background: rgba(0, 210, 255, 0.03); }
+.skill-category li { margin-bottom: 0.5rem; position: relative; padding-left: 1.2rem; }
+.skill-category li::before { content: "→"; position: absolute; left: 0; color: var(--border); }
+.highlight-box { border: 1px solid var(--accent); padding: 1.5rem; border-radius: 8px; background: #00d2ff0a; }
 
 /* =========================================
-   ANIMACIÓN DE PROYECTOS (INDEX)
+   LISTA DE PROYECTOS (Con Animación)
    ========================================= */
-.project-list { margin-top: 2rem; }
 .project-item {
     display: flex;
-    gap: 3rem;
-    padding: 3rem;
+    gap: 2rem;
+    padding: 2.5rem; /* Más espacio interno */
     border-bottom: 1px solid var(--border);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s ease-in-out; /* Transición suave */
+    border-radius: 8px; /* Preparamos bordes para el hover */
     position: relative;
-    text-decoration: none;
-    color: inherit;
+    overflow: hidden;
 }
 
+/* LA ANIMACIÓN PROFESIONAL */
 .project-item:hover {
-    background-color: var(--surface);
-    transform: translateX(10px);
+    background-color: var(--surface); /* Cambia fondo */
+    transform: translateY(-5px); /* Se eleva sutilmente */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Da profundidad */
+    border-bottom-color: transparent; /* Oculta la línea divisoria */
 }
 
-.project-item::before {
+/* Indicador de acento en el hover */
+.project-item::after {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     height: 100%;
-    width: 0;
-    background: var(--accent);
-    transition: 0.3s;
+    width: 4px;
+    background-color: var(--accent);
+    transform: scaleY(0); /* Oculto por defecto */
+    transition: transform 0.3s ease;
 }
 
-.project-item:hover::before { width: 4px; }
+.project-item:hover::after {
+    transform: scaleY(1); /* Se muestra en el hover */
+}
 
-.project-meta { font-family: var(--font-mono); color: var(--text-secondary); min-width: 150px; font-size: 0.85rem; }
-.project-details h4 { font-size: 1.8rem; margin-bottom: 0.5rem; font-weight: 700; transition: 0.3s; }
-.project-item:hover h4 { color: var(--accent); }
-.project-details p { color: var(--text-secondary); font-size: 1rem; }
-.view-more { display: inline-block; margin-top: 1.5rem; color: var(--accent); font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.project-meta { font-family: var(--font-mono); color: var(--text-secondary); min-width: 150px; font-size: 0.8rem; margin-top: 0.3rem; }
+.project-details h4 { font-size: 1.3rem; margin-bottom: 0.5rem; color: white; transition: 0.3s; }
+.project-item:hover .project-details h4 { color: var(--accent); }
+.view-more { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; border-bottom: 1px solid transparent; transition: 0.3s; }
+.view-more:hover { border-bottom: 1px solid var(--accent); }
 
 /* =========================================
-   SISTEMA DE VIDEOS (SOLUCIÓN KIDWIND)
+   KIDWIND: IMÁGENES Y PLANOS (GRIDS)
    ========================================= */
-
-/* Para videos horizontales (16:9) */
-.video-main {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin: 2rem 0;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-}
-
-.video-main iframe { width: 100%; height: 100%; border: none; }
-
-/* CONTENEDOR PARA SHORTS (Vertical 9:16) - CORRECCIÓN CRÍTICA */
-.video-vertical-hero {
-    width: 100%;
-    max-width: 420px; /* Tamaño ideal para que se vea imponente pero quepa bien */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.video-vertical-hero iframe {
-    width: 100%;
-    aspect-ratio: 9 / 16; /* Fuerza la forma de celular */
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-}
-
-/* Grid de 2 columnas (Texto + Video) */
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center; /* Centra el texto verticalmente con el video */
-}
-
-/* =========================================
-   IMÁGENES Y PLANOS
-   ========================================= */
-.project-header { text-align: center; margin-bottom: 5rem; }
-.project-header h1 { margin: 1rem auto; }
-
+.project-header { text-align: center; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; }
 .image-grid, .blueprints-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin: 2rem 0;
+    margin-top: 2rem;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .card img, .blueprint-item img {
     width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1px solid var(--border);
-    transition: 0.4s;
-}
-
-.card:hover img { border-color: var(--accent); transform: translateY(-5px); }
-
-.blueprint-item { background: #f9f9f9; padding: 1rem; border-radius: 12px; text-align: center; }
-.blueprint-item img { filter: contrast(1.1); margin-bottom: 1rem; }
-.blueprint-item span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; }
-
-.caption { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem; text-align: center; }
-
-/* Reconocimiento (Certificado y Equipo) */
-.recognition-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-}
-
-.cert-img, .team-img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid var(--border);
+    background: #18181b;
     transition: 0.3s;
 }
 
-/* =========================================
-   COMPONENTE DE CÓDIGO (ESP32)
-   ========================================= */
-.code-window {
-    background: #1e1e1e;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+.blueprint-item img {
+    aspect-ratio: 16/9;
+    object-fit: contain; /* No corta el plano técnico */
+    padding: 10px;
+    background: #fdfdfd;
 }
 
-.code-header { background: #2d2d2d; padding: 12px 18px; display: flex; gap: 8px; }
-.code-header span { width: 12px; height: 12px; border-radius: 50%; }
+.caption { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.8rem; text-align: center; }
+
+/* Videos y Shorts */
+.video-main { margin: 2rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.video-short-container { display: flex; justify-content: center; margin: 3rem 0; }
+.video-short-container iframe { border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 100%; }
+
+/* Botones */
+.btn-download { display: inline-flex; align-items: center; gap: 10px; background-color: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 12px 24px; border-radius: 5px; text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 600; transition: 0.3s; margin-top: 2rem; }
+.btn-download:hover { background-color: var(--accent); color: var(--bg); }
+
+/* Reconocimiento (Certificado/Equipo) */
+.recognition-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.cert-img, .team-img {
+    max-width: 45%; /* En PC van lado a lado */
+    height: auto; /* Mantiene proporción */
+    border-radius: 8px;
+    filter: grayscale(20%);
+    transition: 0.3s;
+    border: 1px solid var(--border);
+}
+
+.cert-img:hover, .team-img:hover { filter: grayscale(0%); border-color: var(--accent); }
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer { padding: 5rem 10%; text-align: center; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: auto; }
+
+/* =========================================
+   OPTIMIZACIÓN MÓVIL (RESPONSIVE)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Reduce el aire lateral para que el contenido no se vea pinchado */
+    nav { padding: 1rem 5%; }
+    #hero { padding: 8rem 5% 4rem 5%; }
+    .section-container { padding: 3rem 5%; }
+    h1 { font-size: 2.2rem; }
+    
+    .nav-links { display: none; } /* Oculta menú en móvil por simplicidad */
+    
+    /* Proyectos en Index */
+    .project-item { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+    .project-meta { min-width: auto; margin-bottom: 0.5rem; color: var(--accent); }
+    
+    /* Grids en KidWind */
+    .image-grid, .blueprints-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    
+    /* ARREGLO CRÍTICO: Imágenes de Certificado y Equipo en móvil */
+    .recognition-grid {
+        flex-direction: column; /* Se apilan verticalmente */
+        gap: 1.5rem;
+    }
+    
+    .cert-img, .team-img {
+        max-width: 100%; /* Ocupan todo el ancho disponible */
+        width: 100%;     /* Fuerza a llenar el ancho del grid safe */
+        height: auto;    /* Crucial para no cortarlas y mantener proporción */
+    }
+}
+/* Ventana de Código Estilo Dark Mode */
+.code-window {
+    background: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.code-header {
+    background: #2d2d2d;
+    padding: 10px;
+    display: flex;
+    gap: 6px;
+}
+
+.code-header span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 .code-header span:nth-child(1) { background: #ff5f56; }
 .code-header span:nth-child(2) { background: #ffbd2e; }
 .code-header span:nth-child(3) { background: #27c93f; }
 
-pre { padding: 25px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.5; color: #d4d4d4; }
+pre { padding: 20px; color: #d4d4d4; overflow-x: auto; }
 code { color: var(--accent); }
-
-/* =========================================
-   BOTONES Y EXTRAS
-   ========================================= */
-.btn-download {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 1rem 2rem;
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: var(--font-mono);
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.btn-download:hover { background: var(--accent); color: var(--bg); }
-
-.tech-list { list-style: none; margin-top: 2rem; }
-.tech-list li { margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.95rem; }
-.tech-list strong { color: var(--text-primary); }
-
-footer { padding: 5rem 10%; text-align: center; border-top: 1px solid var(--border); color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.8rem; }
-
-/* =========================================
-   RESPONSIVE (Móvil)
-   ========================================= */
-@media (max-width: 992px) {
-    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
-    .recognition-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .section-container { padding: 4rem 5%; }
-    #hero { padding: 8rem 5% 4rem 5%; }
-}
-
-@media (max-width: 600px) {
-    h1 { font-size: 2.2rem; }
-    .project-item { flex-direction: column; padding: 2rem 1rem; gap: 1rem; }
-    .project-meta { min-width: auto; }
-    .video-vertical-hero { max-width: 100%; }
-}
