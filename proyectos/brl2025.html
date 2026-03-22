@@ -3,48 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KidWind Challenge 2025 | Documentación Técnica</title>
+    <title>BRL 1lb RC | Angel Omar</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    
-    <style>
-        /* ESTA ES LA SOLUCIÓN DEFINITIVA */
-        .video-short-imponente {
-            width: 100%;
-            max-width: 500px; /* Aquí controlas qué tan grande se ve (500px es imponente) */
-            margin: 2rem auto;
-            display: flex;
-            justify-content: center;
-        }
-
-        .video-short-imponente iframe {
-            width: 100%;
-            aspect-ratio: 9 / 16; /* Obliga a mantener el formato de celular */
-            border-radius: 24px; /* Bordes más curvos para un look moderno */
-            border: 2px solid var(--accent); /* Marco con tu color de acento */
-            box-shadow: 0 25px 50px -12px rgba(0, 210, 255, 0.25); /* Sombra con color */
-        }
-
-        /* Ajuste para que el texto no apriete al video en computadoras */
-        .seccion-grande {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr; /* Le damos un poco más de espacio al video */
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 992px) {
-            .seccion-grande {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .video-short-imponente {
-                max-width: 90%; /* En celular se adapta al ancho de pantalla */
-            }
-        }
-    </style>
 </head>
-<body class="subpage">
+<body>
 
     <nav>
         <div class="nav-container">
@@ -54,72 +17,129 @@
 
     <main class="section-container">
         <header class="project-header">
-            <span class="badge">Competencia Nacional 2025</span>
-            <h1>KidWind Challenge: Turbina Eólica</h1>
-            <p>Optimización aerodinámica y sistemas de transmisión de potencia.</p>
+            <span class="badge">Baja Robotics League 2025</span>
+            <h1>Sumo RC 1lb: Ingeniería de Combate</h1>
+            <p>Diseño de chasis de alta resistencia y control inalámbrico de baja latencia mediante Bluepad32.</p>
         </header>
 
         <section class="doc-section">
             <h2 class="section-number">01.</h2>
-            <h3>Diseño y Modelado CAD (Fusion 360)</h3>
+            <h3>Diseño y Packaging Mecánico</h3>
+            <p>El diseño se centró en la protección de la electrónica. Se utilizó una <strong>vista de sección</strong> para validar el espacio interno del ESP32 y asegurar que no existiera interferencia con los motores.</p>
+            
             <div class="image-grid">
-                <div class="card"><img src="../img/kidwind/Render.jpg" alt="Render"><p class="caption">Ensamble final</p></div>
-                <div class="card"><img src="../img/kidwind/AspaDesign.jpg" alt="Aspa"><p class="caption">Geometría del aspa</p></div>
-                <div class="card"><img src="../img/kidwind/Hub.jpg" alt="Hub"><p class="caption">Diseño del Hub</p></div>
+                <div class="card">
+                    <img src="../img/brl/RenderIMG.jpg" alt="Render Sumo">
+                    <p class="caption">Render Final: Geometría de Ataque</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl/ChasisIMG.jpg" alt="Diseño Chasis">
+                    <p class="caption">Modo Diseño: Estructura Principal</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl/ESP32IMG.jpg" alt="Vista de Corte">
+                    <p class="caption">Corte Transversal: Alojamiento ESP32</p>
+                </div>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">02.</h2>
-            <h3>Planos Técnicos y Despiece</h3>
+            <h3>Planos de Fabricación</h3>
+            <p>Documentación técnica para la impresión 3D y ensamble. Se optimizó la llanta para maximizar la tracción en superficies lisas.</p>
+            
             <div class="blueprints-grid">
-                <div class="blueprint-item"><img src="../img/kidwind/AspaCompletaDrawing.jpg" alt="Plano"><span>Vista General</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/HubDrawing.jpg" alt="Plano"><span>Hub Central</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/Pieza1Drawing.jpg" alt="Plano"><span>Base del Aspa</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/Pieza2Drawing.jpg" alt="Plano"><span>Cuerpo Medio</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/Pieza3Drawing.jpg" alt="Plano"><span>Punta Optimización</span></div>
+                <div class="blueprint-item">
+                    <img src="../img/brl/ChasisDrawing.jpg" alt="Plano Chasis">
+                    <span>Estructura Base: Chasis</span>
+                </div>
+                <div class="blueprint-item">
+                    <img src="../img/brl/TechoDrawing.jpg" alt="Plano Techo">
+                    <span>Protección Superior: Techo</span>
+                </div>
+                <div class="blueprint-item">
+                    <img src="../img/brl/RuedaDrawing.jpg" alt="Plano Llanta">
+                    <span>Componente de Tracción: Llanta</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="../docs/DrawingsBRL2025.zip" download class="btn-download">
+                    <span>⬇</span> DESCARGAR DOCUMENTACIÓN TÉCNICA (PDF)
+                </a>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">03.</h2>
-            <h3>Manufactura Aditiva y Transmisión</h3>
-            <div class="seccion-grande">
-                <div>
-                    <p>Utilicé impresión 3D para materializar los componentes. Un punto crítico fue el <strong>sistema de engranajes</strong>, diseñado para optimizar la relación de rotación entre las aspas y el generador DC.</p>
-                    <ul class="tech-list" style="margin-top: 2rem;">
-                        <li><strong>Material:</strong> PLA+ de alta resistencia</li>
-                        <li><strong>Relación de engranes:</strong> Optimización de torque 3:1</li>
-                    </ul>
+            <h3>Lógica de Control con Bluepad32</h3>
+            <div class="grid-2">
+                <div class="code-window">
+                    <div class="code-header"><span></span><span></span><span></span></div>
+                    <pre><code>
+// Mapeo de control R2/L2 y D-pad
+void loop() {
+    BP32.update();
+    ControllerPtr myGamepad = myControllers[0];
+
+    if (myGamepad && myGamepad->isConnected()) {
+        int r2 = map(myGamepad->throttle(), 0, 740, 0, 1023); // Adelante
+        int l2 = map(myGamepad->brake(), 0, 900, 0, 1023);    // Reversa
+        int dpad = myGamepad->dpad();
+
+        if (dpad == 4) driveMotor(2, 900);  // Giro Der
+        else if (dpad == 8) driveMotor(-2, 900); // Giro Izq
+        else if (r2 > 50) driveMotor(1, r2);
+        else if (l2 > 50) driveMotor(-1, l2);
+        else driveMotor(0, 0);
+    }
+}
+                    </code></pre>
                 </div>
-                
-                <div class="video-short-imponente">
-                    <iframe src="https://www.youtube.com/embed/mC_pTLnsMnY" frameborder="0" allowfullscreen></iframe>
+                <div>
+                    <p>Se implementó un sistema de control basado en <strong>Bluetooth HID</strong>. La resolución de 10 bits (0-1023) en el PWM permite una aceleración progresiva y precisa.</p>
+                    <ul class="tech-list">
+                        <li><strong>Frecuencia PWM:</strong> 20,000 Hz</li>
+                        <li><strong>Resolución:</strong> 10-bit</li>
+                        <li><strong>Driver:</strong> Puente H Dual</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">04.</h2>
-            <h3>Desempeño y Validación</h3>
-            <p style="text-align: center; margin-bottom: 2rem;">Prueba de funcionamiento en túnel de viento durante KidWind 2025.</p>
-            
-            <div class="video-short-imponente" style="max-width: 550px;"> <iframe src="https://www.youtube.com/embed/QV45kja1STc" frameborder="0" allowfullscreen></iframe>
+            <h3>Prototipado e Impresión 3D</h3>
+            <p>Video del proceso de manufactura aditiva del chasis principal.</p>
+            <div class="video-main">
+                <iframe width="100%" height="450" src="https://www.youtube.com/embed/AH-uYB2Z9Ds?si=tWlHapQsRSWSFesE" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">05.</h2>
-            <h3>Certificación y Equipo</h3>
+            <h3>Competencia y Desempeño</h3>
             <div class="recognition-grid">
-                <img src="../img/kidwind/Certificado.jpg" alt="Certificado" class="cert-img">
-                <img src="../img/kidwind/Equipo.jpg" alt="Equipo" class="team-img">
+                <div class="video-short-container">
+                    <iframe width="315" height="560" src="https://www.youtube.com/embed/wLAHy4wLN7E" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="image-grid">
+                    <div class="card">
+                        <img src="../img/brl/Ensamble.jpg" alt="Sumo Ensamblado">
+                        <p class="caption">Prototipo Final: Post-Competencia</p>
+                    </div>
+                    <div class="card">
+                        <img src="../img/brl/CertificadoPage.jpg" alt="Certificado">
+                        <p class="caption">Reconocimiento BRL 2025</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>angelomar-eng // KidWind Project 2025</p>
+        <p>angelomar-eng // BRL 2025 // Diseñado para alto desempeño</p>
     </footer>
 
 </body>
