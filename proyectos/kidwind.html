@@ -8,36 +8,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
-        .video-short-container {
+        /* ESTA ES LA SOLUCIÓN DEFINITIVA */
+        .video-short-imponente {
             width: 100%;
-            max-width: 480px; /* Tamaño imponente para un Short */
-            margin: 2rem auto; /* Centrado */
-            display: block;
+            max-width: 500px; /* Aquí controlas qué tan grande se ve (500px es imponente) */
+            margin: 2rem auto;
+            display: flex;
+            justify-content: center;
         }
 
-        .video-short-container iframe {
+        .video-short-imponente iframe {
             width: 100%;
-            aspect-ratio: 9 / 16; /* Fuerza la forma vertical de Short */
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            aspect-ratio: 9 / 16; /* Obliga a mantener el formato de celular */
+            border-radius: 24px; /* Bordes más curvos para un look moderno */
+            border: 2px solid var(--accent); /* Marco con tu color de acento */
+            box-shadow: 0 25px 50px -12px rgba(0, 210, 255, 0.25); /* Sombra con color */
         }
 
-        /* Ajuste para que en la sección de manufactura se vea bien el texto al lado */
-        .grid-manufactura {
+        /* Ajuste para que el texto no apriete al video en computadoras */
+        .seccion-grande {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr; /* Le damos un poco más de espacio al video */
             gap: 4rem;
             align-items: center;
         }
 
         @media (max-width: 992px) {
-            .grid-manufactura {
+            .seccion-grande {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
-            .video-short-container {
-                max-width: 100%;
-                padding: 0 10%;
+            .video-short-imponente {
+                max-width: 90%; /* En celular se adapta al ancho de pantalla */
             }
         }
     </style>
@@ -54,18 +56,16 @@
         <header class="project-header">
             <span class="badge">Competencia Nacional 2025</span>
             <h1>KidWind Challenge: Turbina Eólica</h1>
-            <p>Optimización aerodinámica y sistemas de transmisión de potencia para máxima eficiencia energética.</p>
+            <p>Optimización aerodinámica y sistemas de transmisión de potencia.</p>
         </header>
 
         <section class="doc-section">
             <h2 class="section-number">01.</h2>
             <h3>Diseño y Modelado CAD (Fusion 360)</h3>
-            <p>El diseño se centró en la modularidad. El aspa fue seccionada en tres partes para facilitar la experimentación con diferentes perfiles alares.</p>
-            
             <div class="image-grid">
                 <div class="card"><img src="../img/kidwind/Render.jpg" alt="Render"><p class="caption">Ensamble final</p></div>
                 <div class="card"><img src="../img/kidwind/AspaDesign.jpg" alt="Aspa"><p class="caption">Geometría del aspa</p></div>
-                <div class="card"><img src="../img/kidwind/Hub.jpg" alt="Hub"><p class="caption">Hub central</p></div>
+                <div class="card"><img src="../img/kidwind/Hub.jpg" alt="Hub"><p class="caption">Diseño del Hub</p></div>
             </div>
         </section>
 
@@ -75,41 +75,36 @@
             <div class="blueprints-grid">
                 <div class="blueprint-item"><img src="../img/kidwind/AspaCompletaDrawing.jpg" alt="Plano"><span>Vista General</span></div>
                 <div class="blueprint-item"><img src="../img/kidwind/HubDrawing.jpg" alt="Plano"><span>Hub Central</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/Pieza1Drawing.jpg" alt="Plano"><span>Sección A: Base</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/Pieza2Drawing.jpg" alt="Plano"><span>Sección B: Cuerpo</span></div>
-                <div class="blueprint-item"><img src="../img/kidwind/Pieza3Drawing.jpg" alt="Plano"><span>Sección C: Punta</span></div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="../docs/KidWind_Drawings.zip" download class="btn-download">⬇ DESCARGAR PLANOS (PDF)</a>
+                <div class="blueprint-item"><img src="../img/kidwind/Pieza1Drawing.jpg" alt="Plano"><span>Base del Aspa</span></div>
+                <div class="blueprint-item"><img src="../img/kidwind/Pieza2Drawing.jpg" alt="Plano"><span>Cuerpo Medio</span></div>
+                <div class="blueprint-item"><img src="../img/kidwind/Pieza3Drawing.jpg" alt="Plano"><span>Punta Optimización</span></div>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">03.</h2>
             <h3>Manufactura Aditiva y Transmisión</h3>
-            <div class="grid-manufactura">
+            <div class="seccion-grande">
                 <div>
                     <p>Utilicé impresión 3D para materializar los componentes. Un punto crítico fue el <strong>sistema de engranajes</strong>, diseñado para optimizar la relación de rotación entre las aspas y el generador DC.</p>
                     <ul class="tech-list" style="margin-top: 2rem;">
                         <li><strong>Material:</strong> PLA+ de alta resistencia</li>
-                        <li><strong>Infill:</strong> 40% (Giroscopio)</li>
-                        <li><strong>Relación:</strong> 3:1 para torque máximo</li>
+                        <li><strong>Relación de engranes:</strong> Optimización de torque 3:1</li>
                     </ul>
                 </div>
-                <div class="video-short-container">
+                
+                <div class="video-short-imponente">
                     <iframe src="https://www.youtube.com/embed/mC_pTLnsMnY" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
-            <p class="caption" style="text-align: center; margin-top: 1rem;">Proceso de impresión 3D de componentes críticos.</p>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">04.</h2>
             <h3>Desempeño y Validación</h3>
-            <p style="text-align: center;">Prueba de funcionamiento en túnel de viento durante KidWind 2025.</p>
+            <p style="text-align: center; margin-bottom: 2rem;">Prueba de funcionamiento en túnel de viento durante KidWind 2025.</p>
             
-            <div class="video-short-container">
-                <iframe src="https://www.youtube.com/embed/QV45kja1STc" frameborder="0" allowfullscreen></iframe>
+            <div class="video-short-imponente" style="max-width: 550px;"> <iframe src="https://www.youtube.com/embed/QV45kja1STc" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
