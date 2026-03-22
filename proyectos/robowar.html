@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboWar 2025 | Proyecto de Aprendizaje</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos específicos para Shorts e impacto visual */
+        .video-short-imponente {
+            width: 100%;
+            max-width: 450px;
+            margin: 2rem auto;
+            display: block;
+        }
+        .video-short-imponente iframe {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .learning-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+        .bom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .bom-item {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .bom-item i { display: block; color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-mono); font-style: normal; }
+    </style>
+</head>
+<body class="subpage">
+
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="brand">← VOLVER AL PORTAFOLIO</a>
+        </div>
+    </nav>
+
+    <main class="section-container">
+        <header class="project-header">
+            <span class="badge" style="border-color: #ffbd2e; color: #ffbd2e;">Hito de Aprendizaje</span>
+            <h1>RoboWar 2025: Robot Sumo</h1>
+            <p>Mi primera incursión en robótica de competencia: retos, improvisación y lecciones técnicas.</p>
+        </header>
+
+        <section class="doc-section">
+            <h2 class="section-number">01.</h2>
+            <h3>Contexto y Retrospectiva</h3>
+            <div class="learning-card">
+                <p>Este proyecto corresponde a mi primera participación en una competencia regional de robótica. A pesar de contar con experiencia previa en KidWind, enfrenté por primera vez los retos específicos de un robot de sumo en condiciones reales. </p>
+                <br>
+                <p><strong>El mayor desafío:</strong> La falta de una PCB dedicada obligó a una transición crítica hacia un sistema basado en <em>Arduino Nano Screw Terminal</em>. Esto generó dificultades en la organización de cables y gestión de espacio, pero se convirtió en un aula intensiva sobre integración de hardware bajo presión.</p>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">02.</h2>
+            <h3>Stack Tecnológico (BOM)</h3>
+            <p>Selección de componentes para detección de oponentes, control de línea y potencia motriz.</p>
+            
+            <div class="bom-grid">
+                <div class="bom-item"><i>MCU</i><strong>Arduino Nano</strong><span>+ Screw Terminal</span></div>
+                <div class="bom-item"><i>Driver</i><strong>TB6612FNG</strong><span>Puente H Dual</span></div>
+                <div class="bom-item"><i>Oponentes</i><strong>Sharp GP2Y0A21</strong><span>Sensores Infrarrojos</span></div>
+                <div class="bom-item"><i>Línea</i><strong>QTR-1A</strong><span>Sensores de Contraste</span></div>
+                <div class="bom-item"><i>Motores</i><strong>[Modelo de Motor]</strong><span>High Torque DC</span></div>
+                <div class="bom-item"><i>Chasis</i><strong>Custom Design</strong><span>Impresión 3D</span></div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">03.</h2>
+            <h3>Diseño Mecánico y Lógica de Combate</h3>
+            <div class="grid-2" style="align-items: start;">
+                <div>
+                    <p>El chasis fue diseñado para maximizar la tracción. Aunque la gestión de cables fue compleja debido a la improvisación del hardware, el enfoque se mantuvo en la robustez estructural.</p>
+                    <div class="code-window" style="margin-top: 2rem;">
+                        <div class="code-header"><span></span><span></span><span></span></div>
+                        <pre><code>// Lógica de búsqueda simplificada
+void loop() {
+  if (detectarOponente()) {
+    ataqueFullPower();
+  } else {
+    busquedaCircular();
+  }
+}</code></pre>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/robowar/Chasis.jpg" alt="Diseño del chasis RoboWar">
+                    <p class="caption">Modelo CAD del chasis en Fusion 360.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">04.</h2>
+            <h3>Desempeño en Competencia</h3>
+            <p style="text-align: center; margin-bottom: 2rem;">Pruebas de sensores y combate en el dojo durante RoboWar 2025.</p>
+            
+            <div class="grid-2">
+                <div class="video-short-imponente">
+                    <iframe src="https://www.youtube.com/embed/[ID_VIDEO_1]" frameborder="0" allowfullscreen></iframe>
+                    <p class="caption">Test de sensores Sharp y QTR.</p>
+                </div>
+                <div class="video-short-imponente">
+                    <iframe src="https://www.youtube.com/embed/[ID_VIDEO_2]" frameborder="0" allowfullscreen></iframe>
+                    <p class="caption">Combate: Empuje y respuesta.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">05.</h2>
+            <h3>Lecciones de Ingeniería</h3>
+            <ul class="tech-list" style="max-width: 800px; margin: 0 auto;">
+                <li><strong>Gestión de Cables:</strong> La importancia de diseñar pensando en el ruteo eléctrico desde el día 1 para evitar "nidos" de cables.</li>
+                <li><strong>Planificación de Componentes:</strong> Anticipar tiempos de entrega de PCBs para evitar improvisaciones de último momento.</li>
+                <li><strong>Hardware de Repuesto:</strong> El uso del Screw Terminal, aunque no era el plan A, demostró la necesidad de tener métodos de montaje alternativos confiables.</li>
+                <li><strong>Programación Bajo Presión:</strong> Optimización de algoritmos de búsqueda en tiempos reducidos entre rondas.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">06.</h2>
+            <h3>Reconocimiento</h3>
+            <div style="text-align: center;">
+                <img src="../img/robowar/Certificado.jpg" alt="Reconocimiento RoboWar" class="cert-img" style="max-width: 600px;">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>angelomar-eng // RoboWar 2025 // Evolución Técnica</p>
+    </footer>
+
+</body>
+</html>
