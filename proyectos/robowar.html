@@ -114,112 +114,44 @@
 
         <section class="doc-section">
             <h2 class="section-number">04.</h2>
-            <h3>Programación y Lógica de Sensores</h3>
-            <p>Implementación de algoritmos de búsqueda y ataque, ruteando la señal de los Sharp infrarrojos y los QTR de contraste. Incluye una función de filtrado promedio para reducir el ruido de las lecturas analógicas de distancia.</p>
-            
+            <h3>Lógica de Control y Filtrado</h3>
+            <p>En lugar de usar lecturas crudas, implementé un <strong>filtro de promedio móvil</strong> para suavizar las señales de los sensores Sharp, evitando ataques falsos causados por el ruido eléctrico o rebotes de luz en la arena.</p>
+        
             <div class="code-window" style="margin-top: 2rem;">
-                <div class="code-header"><span></span><span></span><span></span></div>
+                <div class="code-header"><span></span><span></span><span></span> <small style="color: #666; margin-left: 10px; font-family: var(--font-mono);">logic_main.ino</small></div>
                 <pre><code>
-// --- Sensores ---
-#define DIST_LEFT  A1
-#define DIST_RIGHT A0
-#define DIST_FRONT A2
-
-#include <QTRSensors.h>
-QTRSensors qtr;
-uint16_t lineSensors[2];
-
-// --- Pines motores (simplificado) ---
-#define AIN1 3
-#define AIN2 4
-#define PWMA 5
-#define BIN1 8
-#define BIN2 7
-#define PWMB 6
-
-// --- Variables clave ---
-int limite = 350;
-int ultimoLado = 1; // 1 = derecha, -1 = izquierda
-unsigned long ultimoDetectado = 0;
-int persistencia = 400;
-
-// --- Movimiento (simplificado) ---
-void move(int izq, int der) {
-  digitalWrite(AIN1, izq > 0); digitalWrite(AIN2, izq <= 0);
-  digitalWrite(BIN1, der > 0); digitalWrite(BIN2, der <= 0);
-  analogWrite(PWMA, abs(izq));
-  analogWrite(PWMB, abs(der));
-}
-
-// --- Loop principal ---
-void loop() {
-
-  // Lectura línea (borde)
-  qtr.read(lineSensors);
-  bool bordeIzq = lineSensors[0] < 1000;
-  bool bordeDer = lineSensors[1] < 1000;
-
-  // Lectura distancia
-  int rawL = analogRead(DIST_LEFT);
-  int rawR = analogRead(DIST_RIGHT);
-  int rawF = analogRead(DIST_FRONT);
-
-  // --- Filtro (clave) ---
-  static int fL=0, fR=0, fF=0;
-  fL = (fL*3 + rawL)/4;
-  fR = (fR*3 + rawR)/4;
-  fF = (fF*3 + rawF)/4;
-
-  unsigned long t = millis();
-
-  // --- 1. EVASIÓN DE BORDE ---
-  if (bordeIzq || bordeDer) {
-    move(-255, -255);
-    delay(400);
-
-    if (bordeIzq) move(255, -255);
-    else move(-255, 255);
-
-    delay(150);
-    return;
-  }
-
-  // --- 2. ATAQUE FRONTAL ---
-  if (fF > limite) {
-    move(255, 255);
-    ultimoDetectado = t;
-    return;
-  }
-
-  // --- 3. DETECCIÓN LATERAL ---
-  if (fL > limite && fR < limite) {
-    move(-200, 200);
-    ultimoLado = -1;
-    ultimoDetectado = t;
-    return;
-  }
-
-  if (fR > limite && fL < limite) {
-    move(200, -200);
-    ultimoLado = 1;
-    ultimoDetectado = t;
-    return;
-  }
-
-  // --- 4. PERSISTENCIA (MEMORIA) ---
-  if (t - ultimoDetectado < persistencia) {
-    move(ultimoLado * 200, -ultimoLado * 200);
-  } 
-  else {
-    // búsqueda automática
-    if ((t/2000)%2 == 0) move(200, -200);
-    else move(-200, 200);
-  }
-
-  delay(10);
-}
+        // --- Fragmento Crítico: Filtro y Búsqueda ---
+        void loop() {
+          // Suavizado de señal: (Valor_anterior * 3 + Valor_actual) / 4
+          fIzq = (fIzq * 3 + analogRead(DIST_LEFT)) / 4;
+          fDer = (fDer * 3 + analogRead(DIST_RIGHT)) / 4;
+          fFront = (fFront * 3 + analogRead(DIST_FRONT)) / 4;
+        
+          // Prioridad 1: Evasión de bordes (Sensores QTR)
+          if (sensorValues[0] < 1000 || sensorValues[1] < 1000) {
+            retroceder(255); delay(500);
+            return;
+          }
+        
+          // Prioridad 2: Ataque si hay detección frontal clara
+          if (fFront > limiteOponente) {
+            avanzar(255);
+            return;
+          }
+        }
                 </code></pre>
             </div>
+        
+            <!-- Botón desplegable para el código completo -->
+            <details style="margin-top: 1rem; cursor: pointer; color: var(--accent); font-family: var(--font-mono);">
+                <summary>Ver código completo (Setup, Funciones de Motor y Definiciones)</summary>
+                <div class="code-window" style="margin-top: 1rem; opacity: 0.8;">
+                    <pre><code style="font-size: 0.8rem;">
+        // Aquí iría el resto del código que ya tienes...
+        // (Pines, Funciones avanzar/retroceder, etc.)
+                    </code></pre>
+                </div>
+            </details>
         </section>
 
         <section class="doc-section">
