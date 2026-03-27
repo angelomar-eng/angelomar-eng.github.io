@@ -120,18 +120,16 @@
             <div class="code-window" style="margin-top: 2rem;">
                 <div class="code-header"><span></span><span></span><span></span></div>
                 <pre><code>
-#define DIST_LEFT A1
+// --- Sensores ---
+#define DIST_LEFT  A1
 #define DIST_RIGHT A0
 #define DIST_FRONT A2
 
 #include <QTRSensors.h>
-
 QTRSensors qtr;
+uint16_t lineSensors[2];
 
-const uint8_t SensorCount = 2;
-uint16_t sensorValues[SensorCount];
-
-// --- Pines del puente H TB6612FNG ---
+// --- Pines motores (simplificado) ---
 #define AIN1 3
 #define AIN2 4
 #define PWMA 5
@@ -139,101 +137,86 @@ uint16_t sensorValues[SensorCount];
 #define BIN2 7
 #define PWMB 6
 
-// --- Variables y Umbrales ---
-int distIzq, distDer, distFront;
-int limiteOponente = 350;       // Umbral detección oponente
-int ultimoLado = 1;             // 1 = derecha, -1 = izquierda
-unsigned long tiempoUltimoDetectado = 0;
-int persistencia = 400;         // Tiempo que mantiene búsqueda
+// --- Variables clave ---
+int limite = 350;
+int ultimoLado = 1; // 1 = derecha, -1 = izquierda
+unsigned long ultimoDetectado = 0;
+int persistencia = 400;
 
-void setup() {
-  pinMode(AIN1, OUTPUT); pinMode(AIN2, OUTPUT);
-  pinMode(BIN1, OUTPUT); pinMode(BIN2, OUTPUT);
-  pinMode(PWMA, OUTPUT); pinMode(PWMB, OUTPUT);
-  qtr.setTypeRC();
-  qtr.setSensorPins((const uint8_t[]){2, 9}, SensorCount);
-  Serial.begin(9600);
+// --- Movimiento (simplificado) ---
+void move(int izq, int der) {
+  digitalWrite(AIN1, izq > 0); digitalWrite(AIN2, izq <= 0);
+  digitalWrite(BIN1, der > 0); digitalWrite(BIN2, der <= 0);
+  analogWrite(PWMA, abs(izq));
+  analogWrite(PWMB, abs(der));
 }
 
-// --- Funciones de Movimiento ---
-void avanzar(int velocidad) {
-  digitalWrite(AIN1, HIGH); digitalWrite(AIN2, LOW);
-  digitalWrite(BIN1, HIGH); digitalWrite(BIN2, LOW);
-  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
-}
-
-void retroceder(int velocidad) {
-  digitalWrite(AIN1, LOW); digitalWrite(AIN2, HIGH);
-  digitalWrite(BIN1, LOW); digitalWrite(BIN2, HIGH);
-  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
-}
-
-void girarIzquierda(int velocidad) {
-  digitalWrite(AIN1, LOW); digitalWrite(AIN2, HIGH);
-  digitalWrite(BIN1, HIGH); digitalWrite(BIN2, LOW);
-  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
-}
-
-void girarDerecha(int velocidad) {
-  digitalWrite(AIN1, HIGH); digitalWrite(AIN2, LOW);
-  digitalWrite(BIN1, LOW); digitalWrite(BIN2, HIGH);
-  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
-}
-
+// --- Loop principal ---
 void loop() {
-  qtr.read(sensorValues);
-  bool bordeIzq = sensorValues[0] < 1000;  
-  bool bordeDer = sensorValues[1] < 1000;
 
-  distIzq = analogRead(DIST_LEFT);
-  distDer = analogRead(DIST_RIGHT);
-  distFront = analogRead(DIST_FRONT);
+  // Lectura línea (borde)
+  qtr.read(lineSensors);
+  bool bordeIzq = lineSensors[0] < 1000;
+  bool bordeDer = lineSensors[1] < 1000;
 
-  unsigned long ahora = millis();
+  // Lectura distancia
+  int rawL = analogRead(DIST_LEFT);
+  int rawR = analogRead(DIST_RIGHT);
+  int rawF = analogRead(DIST_FRONT);
 
-  // --- Filtro promedio simple ---
-  static int fIzq = 0, fDer = 0, fFront = 0;
-  fIzq = (fIzq * 3 + distIzq) / 4;
-  fDer = (fDer * 3 + distDer) / 4;
-  fFront = (fFront * 3 + distFront) / 4;
+  // --- Filtro (clave) ---
+  static int fL=0, fR=0, fF=0;
+  fL = (fL*3 + rawL)/4;
+  fR = (fR*3 + rawR)/4;
+  fF = (fF*3 + rawF)/4;
 
-  // Lógica de Evasión de Borde
-  if (bordeIzq || bordeDer) {
-    retroceder(255); delay(500);
-    if (bordeIzq && !bordeDer) girarDerecha(255);
-    else girarIzquierda(255);
-    delay(150);
-    return;
-  }
+  unsigned long t = millis();
 
-  // Lógica de Ataque Frontal
-  if (fFront > limiteOponente) {
-    avanzar(255);
-    tiempoUltimoDetectado = ahora;
-    return;
-  }
+  // --- 1. EVASIÓN DE BORDE ---
+  if (bordeIzq || bordeDer) {
+    move(-255, -255);
+    delay(400);
 
-  // Lógica de Búsqueda Lateral
-  if (fIzq > limiteOponente && fDer < limiteOponente - 30) {
-    girarIzquierda(255); ultimoLado = -1;
-    tiempoUltimoDetectado = ahora; return;
-  }
+    if (bordeIzq) move(255, -255);
+    else move(-255, 255);
 
-  if (fDer > limiteOponente && fIzq < limiteOponente - 30) {
-    girarDerecha(255); ultimoLado = 1;
-    tiempoUltimoDetectado = ahora; return;
-  }
+    delay(150);
+    return;
+  }
 
-  // Mantener último giro si hay duda
-  if (ahora - tiempoUltimoDetectado < persistencia) {
-    if (ultimoLado == 1) girarDerecha(255);
-    else girarIzquierda(255);
-  } else {
-    // Búsqueda lenta alternando lados
-    if ((ahora / 2000) % 2 == 0) girarDerecha(255);
-    else girarIzquierda(255);
-  }
-  delay(10);
+  // --- 2. ATAQUE FRONTAL ---
+  if (fF > limite) {
+    move(255, 255);
+    ultimoDetectado = t;
+    return;
+  }
+
+  // --- 3. DETECCIÓN LATERAL ---
+  if (fL > limite && fR < limite) {
+    move(-200, 200);
+    ultimoLado = -1;
+    ultimoDetectado = t;
+    return;
+  }
+
+  if (fR > limite && fL < limite) {
+    move(200, -200);
+    ultimoLado = 1;
+    ultimoDetectado = t;
+    return;
+  }
+
+  // --- 4. PERSISTENCIA (MEMORIA) ---
+  if (t - ultimoDetectado < persistencia) {
+    move(ultimoLado * 200, -ultimoLado * 200);
+  } 
+  else {
+    // búsqueda automática
+    if ((t/2000)%2 == 0) move(200, -200);
+    else move(-200, 200);
+  }
+
+  delay(10);
 }
                 </code></pre>
             </div>
