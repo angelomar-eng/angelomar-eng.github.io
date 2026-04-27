@@ -6,8 +6,41 @@
     <title>BRL 1lb RC | Angel Omar</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Sincronización de estilos imponentes para Shorts */
+        .video-short-imponente {
+            width: 100%;
+            max-width: 450px;
+            margin: 2rem auto;
+            display: block;
+        }
+        .video-short-imponente iframe {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Estilos para la lista de materiales (BOM) */
+        .bom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .bom-item {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .bom-item i { display: block; color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-mono); font-style: normal; }
+    </style>
 </head>
-<body>
+<body class="subpage">
 
     <nav>
         <div class="nav-container">
@@ -24,8 +57,21 @@
 
         <section class="doc-section">
             <h2 class="section-number">01.</h2>
+            <h3>Hardware y Componentes (BOM)</h3>
+            <p>Selección de componentes electrónicos y mecánicos para maximizar la relación potencia-peso.</p>
+            
+            <div class="bom-grid">
+                <div class="bom-item"><i>Cerebro</i><strong>ESP32 DevKit</strong><span>Control Bluetooth HID</span></div>
+                <div class="bom-item"><i>Potencia</i><strong>BTS7960 43A</strong><span>Driver Puente H Industrial</span></div>
+                <div class="bom-item"><i>Control</i><strong>PS4 Controller</strong><span>Manejo Inalámbrico</span></div>
+                <div class="bom-item"><i>Tracción</i><strong>Motores Amarillos</strong><span>Relación 48:1 Gearbox</span></div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">02.</h2>
             <h3>Diseño y Packaging Mecánico</h3>
-            <p>El diseño se centró en la protección de la electrónica. Se utilizó una <strong>vista de sección</strong> para validar el espacio interno del ESP32 y asegurar que no existiera interferencia con los motores.</p>
+            <p>El diseño se centró en la protección de la electrónica. Se utilizó una <strong>vista de sección</strong> para validar el espacio interno y evitar interferencias mecánicas.</p>
             
             <div class="image-grid">
                 <div class="card">
@@ -38,29 +84,18 @@
                 </div>
                 <div class="card">
                     <img src="../img/brl/ESP32IMG.jpg" alt="Vista de Corte">
-                    <p class="caption">Corte Transversal: Alojamiento ESP32</p>
+                    <p class="caption">Corte Transversal: Alojamiento</p>
                 </div>
             </div>
         </section>
 
         <section class="doc-section">
-            <h2 class="section-number">02.</h2>
+            <h2 class="section-number">03.</h2>
             <h3>Planos de Fabricación</h3>
-            <p>Documentación técnica para la impresión 3D y ensamble. Se optimizó la llanta para maximizar la tracción en superficies lisas.</p>
-            
             <div class="blueprints-grid">
-                <div class="blueprint-item">
-                    <img src="../img/brl/ChasisDrawing.jpg" alt="Plano Chasis">
-                    <span>Estructura Base: Chasis</span>
-                </div>
-                <div class="blueprint-item">
-                    <img src="../img/brl/TechoDrawing.jpg" alt="Plano Techo">
-                    <span>Protección Superior: Techo</span>
-                </div>
-                <div class="blueprint-item">
-                    <img src="../img/brl/RuedaDrawing.jpg" alt="Plano Llanta">
-                    <span>Componente de Tracción: Llanta</span>
-                </div>
+                <div class="blueprint-item"><img src="../img/brl/ChasisDrawing.jpg" alt="Plano"><span>Estructura Base</span></div>
+                <div class="blueprint-item"><img src="../img/brl/TechoDrawing.jpg" alt="Plano"><span>Protección Superior</span></div>
+                <div class="blueprint-item"><img src="../img/brl/RuedaDrawing.jpg" alt="Plano"><span>Llanta de Tracción</span></div>
             </div>
             
             <div style="text-align: center; margin-top: 3rem;">
@@ -71,7 +106,7 @@
         </section>
 
         <section class="doc-section">
-            <h2 class="section-number">03.</h2>
+            <h2 class="section-number">04.</h2>
             <h3>Lógica de Control con Bluepad32</h3>
             <div class="grid-2">
                 <div class="code-window">
@@ -83,12 +118,10 @@ void loop() {
     ControllerPtr myGamepad = myControllers[0];
 
     if (myGamepad && myGamepad->isConnected()) {
-        int r2 = map(myGamepad->throttle(), 0, 740, 0, 1023); // Adelante
-        int l2 = map(myGamepad->brake(), 0, 900, 0, 1023);    // Reversa
-        int dpad = myGamepad->dpad();
-
-        if (dpad == 4) driveMotor(2, 900);  // Giro Der
-        else if (dpad == 8) driveMotor(-2, 900); // Giro Izq
+        int r2 = map(myGamepad->throttle(), 0, 740, 0, 1023); 
+        int l2 = map(myGamepad->brake(), 0, 900, 0, 1023); 
+        
+        if (myGamepad->dpad() == 4) driveMotor(2, 900);  
         else if (r2 > 50) driveMotor(1, r2);
         else if (l2 > 50) driveMotor(-1, l2);
         else driveMotor(0, 0);
@@ -97,37 +130,37 @@ void loop() {
                     </code></pre>
                 </div>
                 <div>
-                    <p>Se implementó un sistema de control basado en <strong>Bluetooth HID</strong>. La resolución de 10 bits (0-1023) en el PWM permite una aceleración progresiva y precisa.</p>
-                    <ul class="tech-list">
+                    <p>Se implementó un sistema basado en <strong>Bluetooth HID</strong>. La resolución de 10 bits en el PWM permite una aceleración progresiva y precisa, vital para el empuje constante.</p>
+                    <ul class="tech-list" style="margin-top: 1.5rem;">
                         <li><strong>Frecuencia PWM:</strong> 20,000 Hz</li>
-                        <li><strong>Resolución:</strong> 10-bit</li>
-                        <li><strong>Driver:</strong> Puente H Dual</li>
+                        <li><strong>Mapeo:</strong> 0-1023 (10-bit)</li>
+                        <li><strong>Latencia:</strong> < 10ms</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section class="doc-section">
-            <h2 class="section-number">04.</h2>
+            <h2 class="section-number">05.</h2>
             <h3>Prototipado e Impresión 3D</h3>
-            <p>Video del proceso de manufactura aditiva del chasis principal.</p>
-            <div class="video-main">
-                <iframe width="100%" height="450" src="https://www.youtube.com/embed/AH-uYB2Z9Ds?si=tWlHapQsRSWSFesE" frameborder="0" allowfullscreen></iframe>
+            <p style="text-align: center;">Timelapse del proceso de manufactura aditiva del chasis principal.</p>
+            <div class="video-short-imponente">
+                <iframe src="https://www.youtube.com/embed/AH-uYB2Z9Ds" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
         <section class="doc-section">
-            <h2 class="section-number">05.</h2>
+            <h2 class="section-number">06.</h2>
             <h3>Competencia y Desempeño</h3>
-            <div class="recognition-grid">
-                <div class="video-short-container">
-                    <iframe width="315" height="560" src="https://www.youtube.com/embed/wLAHy4wLN7E" frameborder="0" allowfullscreen></iframe>
+            <div class="grid-2" style="align-items: center;">
+                <div class="video-short-imponente">
+                    <iframe src="https://www.youtube.com/embed/wLAHy4wLN7E" frameborder="0" allowfullscreen></iframe>
                 </div>
                 
-                <div class="image-grid">
+                <div class="image-grid" style="grid-template-columns: 1fr;">
                     <div class="card">
                         <img src="../img/brl/Ensamble.jpg" alt="Sumo Ensamblado">
-                        <p class="caption">Prototipo Final: Post-Competencia</p>
+                        <p class="caption">Prototipo Final Post-Competencia</p>
                     </div>
                     <div class="card">
                         <img src="../img/brl/CertificadoPage.jpg" alt="Certificado">
