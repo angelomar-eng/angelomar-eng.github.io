@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRL 1lb RC V2 | Angel Omar</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Consistencia visual con V1 */
+        .video-short-imponente {
+            width: 100%;
+            max-width: 450px;
+            margin: 2rem auto;
+            display: block;
+        }
+        .video-short-imponente iframe {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .bom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .bom-item {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .bom-item i { display: block; color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-mono); font-style: normal; }
+        .note-box {
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 4px solid #ff6b6b;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="subpage">
 
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="brand">← VOLVER AL PORTAFOLIO</a>
+        </div>
+    </nav>
+
+    <main class="section-container">
+        <header class="project-header">
+            <span class="badge">Baja Robotics League V2</span>
+            <h1>Sumo RC 1lb V2: Evolución de Chasis</h1>
+            <p>Segunda iteración optimizada para mayor torque y resistencia estructural frente a impactos directos.</p>
+        </header>
+
+        <!-- 01. COMPONENTES -->
+        <section class="doc-section">
+            <h2 class="section-number">01.</h2>
+            <h3>Hardware y Componentes (BOM)</h3>
+            <div class="bom-grid">
+                <div class="bom-item"><i>MCU</i><strong>ESP32 DevKit</strong><span>Control Bluetooth HID</span></div>
+                <div class="bom-item"><i>Driver</i><strong>L298N</strong><span>Puente H Dual Clásico</span></div>
+                <div class="bom-item"><i>Mando</i><strong>PS4 Controller</strong><span>Baja Latencia</span></div>
+                <div class="bom-item"><i>Motores</i><strong>48:1 Gearbox</strong><span>Motores Amarillos</span></div>
+                <div class="bom-item"><i>Energía</i><strong>LiPo 11.1V</strong><span>3 celdas (3S)</span></div>
+            </div>
+        </section>
+
+        <!-- 02. DISEÑO -->
+        <section class="doc-section">
+            <h2 class="section-number">02.</h2>
+            <h3>Diseño Mecánico y Packaging</h3>
+            <p>Se mejoró la distribución de peso para evitar que el robot se levantara al acelerar. La vista trasera permite un acceso rápido al puerto de carga del ESP32.</p>
+            
+            <div class="image-grid">
+                <div class="card">
+                    <img src="../img/brl_v2/RenderV2.jpg" alt="Render V2">
+                    <p class="caption">Render: Diseño Aerodinámico</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl_v2/ChasisV2.jpg" alt="Chasis V2">
+                    <p class="caption">Estructura de Polímero</p>
+                </div>
+                <div class="card">
+                    <img src="../img/brl_v2/RearESP.jpg" alt="Vista Trasera">
+                    <p class="caption">Vista Posterior: Acceso ESP32</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. PLANOS -->
+        <section class="doc-section">
+            <h2 class="section-number">03.</h2>
+            <h3>Documentación Técnica</h3>
+            <div class="blueprints-grid">
+                <div class="blueprint-item"><img src="../img/brl_v2/PlanoChasis.jpg" alt="Plano"><span>Chasis Principal</span></div>
+                <div class="blueprint-item"><img src="../img/brl_v2/PlanoTapa.jpg" alt="Plano"><span>Tapadera de Protección</span></div>
+                <div class="blueprint-item"><img src="../img/brl_v2/PlanoLlanta.jpg" alt="Plano"><span>Llanta V2</span></div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="../docs/Blueprints_V2.zip" download class="btn-download">
+                    <span>⬇</span> DESCARGAR PLANOS (ZIP/JPG)
+                </a>
+            </div>
+        </section>
+
+        <!-- 04. CÓDIGO -->
+        <section class="doc-section">
+            <h2 class="section-number">04.</h2>
+            <h3>Lógica de Control Progresivo</h3>
+            <div class="grid-2">
+                <div class="code-window">
+                    <div class="code-header"><span></span><span></span><span></span></div>
+                    <pre><code>
+// Configuración de PWM y Control de Motores
+void setup() {
+    ledcSetup(0, 20000, 10); // 20kHz, 10-bit resolution
+    ledcAttachPin(ENA, 0);
+    ledcAttachPin(ENB, 1);
+}
+
+void loop() {
+    if (myGamepad && myGamepad->isConnected()) {
+        // Mapeo de aceleración progresiva R2 (Throttle)
+        int r2map = constrain(map(myGamepad->throttle(), 0, 740, 0, 1023), 0, 1023);
+        int l2map = constrain(map(myGamepad->brake(), 0, 900, 0, 1023), 0, 1023);
+
+        if (myGamepad->dpad() == 4) driveMotor(2, 900); // Giro Der
+        else if (r2map > 50) driveMotor(1, r2map);      // Adelante
+        else if (l2map > 50) driveMotor(-1, l2map);     // Reversa
+        else driveMotor(0, 0);
+    }
+}
+                    </code></pre>
+                </div>
+                <div>
+                    <p>La V2 utiliza una resolución de 10 bits para el PWM, permitiendo un control milimétrico del empuje. Se implementó una función <code>driveMotor</code> universal para gestionar las 5 direcciones posibles del robot.</p>
+                    <ul class="tech-list" style="margin-top: 1.5rem;">
+                        <li><strong>Frecuencia:</strong> 20 kHz para evitar ruido auditivo.</li>
+                        <li><strong>Seguridad:</strong> <code>vTaskDelay(1)</code> para estabilidad del kernel RTOS del ESP32.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. MANUFACTURA -->
+        <section class="doc-section">
+            <h2 class="section-number">05.</h2>
+            <h3>Manufactura Aditiva e Iteración</h3>
+            <p>Documentación del proceso de impresión 3D del prototipo inicial.</p>
+            
+            <div class="video-short-imponente">
+                <iframe src="https://www.youtube.com/embed/VIDEO_IMPRESION_GRIS" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="note-box">
+                <strong>Análisis de Falla Técnica:</strong> El prototipo inicial (Gris) falló estructuralmente durante las pruebas de impacto debido a un bajo porcentaje de <em>Infill</em>. La versión final de competencia se reimprimió en <strong>PLA Negro</strong> con un relleno del 60% y patrones giroides para maximizar la absorción de energía.
+            </div>
+        </section>
+
+        <!-- 06. DESEMPEÑO -->
+        <section class="doc-section">
+            <h2 class="section-number">06.</h2>
+            <h3>Competencia y Resultados</h3>
+            <div class="grid-2" style="align-items: center;">
+                <div class="video-short-imponente">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_COMPETENCIA_V2" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <div class="card">
+                    <img src="../img/brl_v2/SumoFinalV2.jpg" alt="Sumo Final Negro">
+                    <p class="caption">Prototipo Final V2 (Versión de Combate)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>angelomar-eng // BRL V2 // Resiliencia Estructural</p>
+    </footer>
+
+</body>
+</html>
