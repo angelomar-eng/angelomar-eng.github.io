@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTT Torneo | Angel Omar</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body class="subpage">
 
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="brand">← VOLVER AL PORTAFOLIO</a>
+        </div>
+    </nav>
+
+    <main class="section-container">
+        <header class="project-header">
+            <span class="badge">UTT Robótica 2026</span>
+            <h1>Sumo Autónomo: Optimización Industrial</h1>
+            <p>Rediseño de arquitectura electrónica mediante PCB comercial para mejorar la fiabilidad en combate de alta intensidad.</p>
+        </header>
+
+        <section class="doc-section">
+            <h2 class="section-number">01.</h2>
+            <h3>Hardware y Arquitectura (PCB)</h3>
+            <p>El salto a una PCB comercial permitió reducir el ruido eléctrico y mejorar la robustez de las conexiones, eliminando fallos críticos por vibraciones durante los impactos.</p>
+            
+            <div class="bom-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem;">
+                <div class="bom-item"><i>Controlador</i><strong>Arduino Nano</strong></div>
+                <div class="bom-item"><i>Driver</i><strong>TB6612FNG</strong></div>
+                <div class="bom-item"><i>Sensores IR</i><strong>Sharp GP2Y0A21YK0F (x3)</strong></div>
+                <div class="bom-item"><i>Sensores Línea</i><strong>QTR-1A (x2)</strong></div>
+                <div class="bom-item"><i>Motores</i><strong>N20 Gearmotors (200 RPM)</strong></div>
+                <div class="bom-item"><i>Energía</i><strong>LiPo 7.4V 1200mAh</strong></div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">02.</h2>
+            <h3>Algoritmo de Persistencia</h3>
+            <div class="grid-2">
+                <div class="code-window">
+                    <pre><code>
+// Lógica de Persistencia y Búsqueda
+if (ahora - tiempoUltimoDetectado < persistencia) {
+    if (ultimoLado == 1) girarIzquierda(velGiro);
+    else girarDerecha(velGiro);
+} else {
+    buscarOponente(); // Máquina de estados 4 fases
+}
+                    </code></pre>
+                </div>
+                <div>
+                    <p>Implementé una <strong>máquina de estados</strong> de 4 fases para el patrón de búsqueda y una variable de <strong>persistencia</strong>. Esto permite que el robot mantenga el objetivo bloqueado aunque el sensor pierda la señal momentáneamente por la velocidad del choque.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">03.</h2>
+            <h3>Competencia y Resultados</h3>
+            <div class="image-grid">
+                <div class="card">
+                    <img src="../img/utt/SumoFront.jpg" alt="Sumo Final">
+                    <p class="caption">Integración final en PCB comercial</p>
+                </div>
+                <div class="card">
+                    <img src="../img/utt/Arena.jpg" alt="Combate">
+                    <p class="caption">Escenario de competencia (UTT)</p>
+                </div>
+            </div>
+            
+            <blockquote style="margin-top: 3rem; padding: 1.5rem; border-left: 3px solid var(--accent);">
+                "La transición del prototipado en protoboard a una placa de circuito impreso (PCB) redujo drásticamente el tiempo de respuesta del sistema y aumentó la eficiencia del torque en los motores N20, logrando un desempeño superior en los empujes laterales."
+            </blockquote>
+        </section>
+    </main>
+
+    <footer>
+        <p>angelomar-eng // UTT 2026 // Optimización Electrónica</p>
+    </footer>
+
+</body>
+</html>
