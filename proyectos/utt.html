@@ -77,31 +77,31 @@
             <h2 class="section-number">01.</h2>
             <h3>Contexto y Salto de Calidad</h3>
             <div class="pro-card">
-                <p>Para el torneo de robótica en la Universidad Tecnológica de Tijuana (UTT), el objetivo principal fue **optimizar la fiabilidad**. Se mantuvo la base mecánica (chasis) del proyecto RoboWar anterior, ya que demostró ser estructuralmente robusta, pero se rediseñó por completo el núcleo electrónico y la lógica algorítmica.</p>
+                <p>Para el torneo de robótica en la Universidad Tecnológica de Tijuana (UTT), el objetivo principal fue optimizar. Se mantuvo el chasis del proyecto RoboWar anterior, pero se rediseñó el código y el cableado.</p>
                 <br>
-                <p><strong>La Mejora Crítica:</strong> Pasamos de un sistema cableado a una <strong>PCB comercial</strong>. Esto redujo drásticamente el ruido eléctrico en los sensores analógicos, eliminó los fallos por desconexión debidos a impactos de alta inercia, y permitió una distribución de peso más limpia y un centro de gravedad más bajo.</p>
+                <p><strong>La Mejora:</strong> Pasamos de un sistema cableado a una <strong>PCB comercial</strong>. Esto redujo el ruido eléctrico en los sensores analógicos, eliminó los fallos por desconexión, y tuvimos una distribución de peso más limpia y un centro de gravedad más bajo.</p>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">02.</h2>
-            <h3>Arquitectura de Hardware (BOM)</h3>
-            <p>Selección de componentes enfocada en la respuesta rápida y tolerancia a vibraciones.</p>
+            <h3>Hardware</h3>
+            <p>Detección, control de motores y lógica central.</p>
             
             <div class="bom-grid">
-                <div class="bom-item"><i>MCU</i><strong>Arduino Nano</strong><span>Procesamiento Central</span></div>
-                <div class="bom-item"><i>Driver</i><strong>TB6612FNG</strong><span>Puente H de Alta Eficiencia</span></div>
-                <div class="bom-item"><i>Oponentes</i><strong>Sharp GP2Y0A21YK0F</strong><span>Sensores Infrarrojos (x3)</span></div>
-                <div class="bom-item"><i>Línea</i><strong>QTR-1A</strong><span>Sensores de Contraste (x2)</span></div>
-                <div class="bom-item"><i>Motores</i><strong>N20 Gearmotors</strong><span>200 RPM / High Torque (x2)</span></div>
-                <div class="bom-item"><i>Integración</i><strong>PCB Comercial</strong><span>Eliminación de cableado</span></div>
+                <div class="bom-item"><i>MCU</i><strong>Arduino Nano</strong><span> Procesamiento Central</span></div>
+                <div class="bom-item"><i>Driver</i><strong>TB6612FNG</strong><span> Puente H</span></div>
+                <div class="bom-item"><i>Oponentes</i><strong>Sharp GP2Y0A21YK0F</strong><span> Sensores Infrarrojos (x3)</span></div>
+                <div class="bom-item"><i>Línea</i><strong>QTR-1A</strong><span> Sensores de Contraste (x2)</span></div>
+                <div class="bom-item"><i>Motores</i><strong>N20 Gearmotors</strong><span> 200 RPM / High Torque (x2)</span></div>
+                <div class="bom-item"><i>Integración</i><strong>PCB Comercial</strong><span> Eliminación de cableado</span></div>
             </div>
         </section>
 
         <section class="doc-section">
             <h2 class="section-number">03.</h2>
             <h3>Integración Final y Distribución</h3>
-            <p>Al no requerir un rediseño CAD para esta iteración, el esfuerzo se centró en el ensamblaje de precisión. La PCB comercial permitió organizar la batería LiPo de 7.4V (1200 mAh) de forma que el peso favoreciera la tracción de las llantas traseras.</p>
+            <p>Al no requerir un rediseño CAD, el esfuerzo se centró en el ensamblaje con precisión. La PCB comercial permitió organizar la batería LiPo de 7.4V (1200 mAh) de forma que el peso favoreciera la tracción de las llantas traseras.</p>
             
             <div class="photo-grid">
                 <div class="card">
@@ -118,12 +118,11 @@
         <section class="doc-section">
             <h2 class="section-number">04.</h2>
             <h3>Algoritmos de Búsqueda y Persistencia</h3>
-            <p>Se desarrolló una <strong>máquina de estados de 4 fases</strong> para la búsqueda de oponentes, acompañada de un sistema de persistencia. Esto permite que el robot no pierda a su objetivo si hay una lectura "ciega" por microsegundos durante giros rápidos.</p>
+            <p>Se desarrolló una <strong>máquina de estados de 4 fases</strong> para la búsqueda de oponentes, acompañada de un sistema de persistencia. Esto permite que el robot no pierda a su objetivo si hay una lectura "ciega" por milisegundos durante giros rápidos.</p>
         
             <div class="code-window" style="margin-top: 2rem;">
                 <div class="code-header"><span></span><span></span><span></span> <small style="color: #666; margin-left: 10px; font-family: var(--font-mono);">state_machine.ino</small></div>
                 <pre><code>
-// Máquina de estados para búsqueda activa
 void buscarOponente() {
   unsigned long ahora = millis();
   unsigned long dt = ahora - tiempoBusqueda;
@@ -134,7 +133,6 @@ void buscarOponente() {
     faseBusqueda = (faseBusqueda + 1) % 4;
   }
 
-  // Patrón: Giro Der -> Avanza -> Giro Izq -> Avanza
   switch (faseBusqueda) {
     case 0: girarDerecha(velBusqueda); break;
     case 1: avanzar(velBusqueda); break;
@@ -144,14 +142,12 @@ void buscarOponente() {
 }
 
 void loop() {
-  // ... (Lectura y filtrado de sensores) ...
   
-  // Lógica de Persistencia
   if (ahora - tiempoUltimoDetectado < persistencia) {
     if (ultimoLado == 1) girarIzquierda(velGiro);
     else girarDerecha(velGiro);
   } else {
-    // Si expira la persistencia, inicia máquina de estados
+    // Si pasa la persistencia, inicia estados
     buscarOponente(); 
   }
 }
@@ -331,7 +327,7 @@ void loop() {
             </div>
             
             <div class="pro-card" style="margin-top: 3rem;">
-                <p><strong>Estado Actual:</strong> El robot demostró un incremento sustancial en fiabilidad gracias a la placa PCB y al algoritmo de búsqueda por fases. <em>(Certificado de participación oficial en espera de emisión por parte del comité organizador).</em></p>
+                <p><strong>Estado Actual:</strong> El robot demostró una mejora gracias a la placa PCB y al algoritmo de búsqueda por fases. <em>(Certificado de participación oficial en espera de emisión por parte del comité organizador).</em></p>
             </div>
         </section>
 
