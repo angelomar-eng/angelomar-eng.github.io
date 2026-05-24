@@ -3,148 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angel Omar | Portafolio de Ingeniería</title>
-    <link rel="stylesheet" href="style.css">
+    <title>UTT Torneo 2026 | Evolución Autónoma</title>
+    <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos específicos para Shorts e impacto visual */
+        .video-short-imponente {
+            width: 100%;
+            max-width: 420px;
+            margin: 2rem auto;
+            display: block;
+        }
+        .video-short-imponente iframe {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 20px;
+            border: 1px solid var(--accent); /* Marco en azul profesional */
+            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.15); /* Sombra azul sutil */
+        }
+        .pro-card {
+            background: rgba(0, 210, 255, 0.03);
+            border-left: 4px solid var(--accent); /* Línea azul en lugar de ámbar */
+            padding: 2rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+        .bom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .bom-item {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .bom-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .bom-item i { display: block; color: var(--accent); margin-bottom: 0.5rem; font-family: var(--font-mono); font-style: normal; }
+
+        /* Ajuste para imágenes lado a lado */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
-<body>
+<body class="subpage">
 
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="brand">ANGELOMAR<span class="dot">-ENG</span></a>
-            <ul class="nav-links">
-                <li><a href="#about">Sobre mí</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-            </ul>
+            <a href="../index.html" class="brand">← VOLVER AL PORTAFOLIO</a>
         </div>
     </nav>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <span class="badge">Aspirante a Ingeniería Mecatrónica</span>
-                <h1>Ingeniería aplicada al <span class="accent">diseño 3D</span> y la <span class="accent">robótica de competencia</span>.</h1>
-                <p>Especialista en desarrollo de prototipos, microcontroladores y manufactura aditiva.</p>
-            </div>
-        </section>
+    <main class="section-container">
+        <header class="project-header">
+            <span class="badge" style="border-color: var(--accent); color: var(--accent);">Competencia Regional 2026</span>
+            <h1>UTT Torneo: Sumo Autónomo</h1>
+            <p>Evolución electrónica: Integración de PCB comercial y optimización de algoritmos de búsqueda.</p>
+        </header>
 
-        <section id="about" class="section-container">
+        <section class="doc-section">
             <h2 class="section-number">01.</h2>
-            <h3 class="section-title">Perfil Personal</h3>
-            <div class="about-content">
-                <p>
-                    Soy estudiante de electrónica en la Preparatoria Federal Lázaro Cárdenas [cite: 9], apasionado por aprender a través del diseño, ensamble y la iteración constante de prototipos. Mi enfoque no es solo entender el funcionamiento de un sistema, sino identificar qué le falta para operar mejor[cite: 11]. Aspiro a especializarme en la **automatización industrial y procesos inteligentes** [cite: 21], con la convicción de diseñar sistemas autónomos y adaptables que resuelvan problemas reales en la industria[cite: 24].
-                </p>
+            <h3>Contexto y Salto de Calidad</h3>
+            <div class="pro-card">
+                <p>Para el torneo de robótica en la Universidad Tecnológica de Tijuana (UTT), el objetivo principal fue **optimizar la fiabilidad**. Se mantuvo la base mecánica (chasis) del proyecto RoboWar anterior, ya que demostró ser estructuralmente robusta, pero se rediseñó por completo el núcleo electrónico y la lógica algorítmica.</p>
+                <br>
+                <p><strong>La Mejora Crítica:</strong> Pasamos de un sistema cableado a una <strong>PCB comercial</strong>. Esto redujo drásticamente el ruido eléctrico en los sensores analógicos, eliminó los fallos por desconexión debidos a impactos de alta inercia, y permitió una distribución de peso más limpia y un centro de gravedad más bajo.</p>
             </div>
         </section>
 
-        <section id="habilidades" class="section-container">
+        <section class="doc-section">
             <h2 class="section-number">02.</h2>
-            <h3 class="section-title">Core Competencies & Tools</h3>
+            <h3>Arquitectura de Hardware (BOM)</h3>
+            <p>Selección de componentes enfocada en la respuesta rápida y tolerancia a vibraciones.</p>
             
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h5>Dominio Estratégico</h5>
-                    <ul>
-                        <li>Diseño CAD (Fusion 360)</li>
-                        <li>Impresión 3D & Prototipado</li>
-                        <li>Arduino / ESP32 Ecosystem</li>
-                        <li>Electrónica Analógica y Digital</li>
-                    </ul>
-                </div>
-                <div class="skill-category highlight-box">
-                    <h5>En Desarrollo</h5>
-                    <ul>
-                        <li>PLCs e Automatización Industrial</li>
-                        <li>Visión Artificial con Python</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="tools-grid" style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                <div class="tool-group">
-                    <h6 style="color: var(--accent); font-family: var(--font-mono); margin-bottom: 1rem;">// Software</h6>
-                    <ul class="tech-list" style="list-style: none; font-size: 0.9rem;">
-                        <li>• Fusion 360</li>
-                        <li>• Arduino IDE</li>
-                        <li>• Ultimaker Cura</li>
-                    </ul>
-                </div>
-                <div class="tool-group">
-                    <h6 style="color: var(--accent); font-family: var(--font-mono); margin-bottom: 1rem;">// Hardware / Control</h6>
-                    <ul class="tech-list" style="list-style: none; font-size: 0.9rem;">
-                        <li>• Microcontroladores (Arduino, ESP32)</li>
-                        <li>• Protocolos HID & Bluetooth</li>
-                        <li>• Drivers Puente H</li>
-                    </ul>
-                </div>
-                <div class="tool-group">
-                    <h6 style="color: var(--accent); font-family: var(--font-mono); margin-bottom: 1rem;">// Manufactura</h6>
-                    <ul class="tech-list" style="list-style: none; font-size: 0.9rem;">
-                        <li>• Impresión 3D (FDM)</li>
-                        <li>• Corte Láser</li>
-                        <li>• Herramientas de Taller</li>
-                    </ul>
-                </div>
+            <div class="bom-grid">
+                <div class="bom-item"><i>MCU</i><strong>Arduino Nano</strong><span>Procesamiento Central</span></div>
+                <div class="bom-item"><i>Driver</i><strong>TB6612FNG</strong><span>Puente H de Alta Eficiencia</span></div>
+                <div class="bom-item"><i>Oponentes</i><strong>Sharp GP2Y0A21YK0F</strong><span>Sensores Infrarrojos (x3)</span></div>
+                <div class="bom-item"><i>Línea</i><strong>QTR-1A</strong><span>Sensores de Contraste (x2)</span></div>
+                <div class="bom-item"><i>Motores</i><strong>N20 Gearmotors</strong><span>200 RPM / High Torque (x2)</span></div>
+                <div class="bom-item"><i>Integración</i><strong>PCB Comercial</strong><span>Eliminación de cableado</span></div>
             </div>
         </section>
 
-        <section id="proyectos" class="section-container">
+        <section class="doc-section">
             <h2 class="section-number">03.</h2>
-            <h3 class="section-title">Proyectos y Competencias</h3>
+            <h3>Integración Final y Distribución</h3>
+            <p>Al no requerir un rediseño CAD para esta iteración, el esfuerzo se centró en el ensamblaje de precisión. La PCB comercial permitió organizar la batería LiPo de 7.4V (1200 mAh) de forma que el peso favoreciera la tracción de las llantas traseras.</p>
             
-            <div class="project-list">
-                <article class="project-item">
-                    <div class="project-meta">2026 • Robótica de Combate</div>
-                    <div class="project-details">
-                        <h4>UTT Torneo de Robótica</h4>
-                        <p>Participación técnica en competencia regional de sumo robótico.</p>
-                        <a href="#" class="view-more">En proceso de documentación...</a>
-                    </div>
-                </article>
-
-                <article class="project-item">
-                    <div class="project-meta">2026 • En Curso</div>
-                    <div class="project-details">
-                        <h4>Baja Robotics League: 1lb RC V2</h4>
-                        <p>Optimización de peso y torque para competencia nacional.</p>
-                        <a href="proyectos/brl2026.html" class="view-more">Ver documentación →</a>
-                    </div>
-                </article>
-
-                <article class="project-item">
-                    <div class="project-meta">2025 • Sumo RC</div>
-                    <div class="project-details">
-                        <h4>Baja Robotics League: 1lb RC</h4>
-                        <p>Desarrollo de chasis de alta resistencia y control inalámbrico.</p>
-                        <a href="proyectos/brl2025.html" class="view-more">Ver documentación →</a>
-                    </div>
-                </article>
-
-                <article class="project-item">
-                    <div class="project-meta">2025 • Sumo Autonómico</div>
-                    <div class="project-details">
-                        <h4>Robowar: Sumo 500g</h4>
-                        <p>Estrategia de combate autónoma mediante sensores infrarrojos.</p>
-                        <a href="proyectos/robowar.html" class="view-more">Ver documentación →</a>
-                    </div>
-                </article>
-
-                <article class="project-item">
-                    <div class="project-meta">2025 • Energía</div>
-                    <div class="project-details">
-                        <h4>KidWind Challenge: Turbina Eólica</h4>
-                        <p>Diseño aerodinámico y generación de energía eficiente.</p>
-                        <a href="proyectos/kidwind.html" class="view-more">Ver documentación →</a>
-                    </div>
-                </article>
+            <div class="photo-grid">
+                <div class="card">
+                    <img src="../img/utt/Sumo_TopView.jpg" alt="Vista Superior del Sumo">
+                    <p class="caption">Distribución Interna (PCB y Cableado Limpio)</p>
+                </div>
+                <div class="card">
+                    <img src="../img/utt/Sumo_FrontView.jpg" alt="Vista Frontal del Sumo">
+                    <p class="caption">Perfil de Ataque Frontal</p>
+                </div>
             </div>
         </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">04.</h2>
+            <h3>Algoritmos de Búsqueda y Persistencia</h3>
+            <p>Se desarrolló una <strong>máquina de estados de 4 fases</strong> para la búsqueda de oponentes, acompañada de un sistema de persistencia. Esto permite que el robot no pierda a su objetivo si hay una lectura "ciega" por microsegundos durante giros rápidos.</p>
+        
+            <div class="code-window" style="margin-top: 2rem;">
+                <div class="code-header"><span></span><span></span><span></span> <small style="color: #666; margin-left: 10px; font-family: var(--font-mono);">state_machine.ino</small></div>
+                <pre><code>
+// Máquina de estados para búsqueda activa
+void buscarOponente() {
+  unsigned long ahora = millis();
+  unsigned long dt = ahora - tiempoBusqueda;
+
+  // Cambia de fase cada 300ms
+  if (dt > 300) {
+    tiempoBusqueda = ahora;
+    faseBusqueda = (faseBusqueda + 1) % 4;
+  }
+
+  // Patrón: Giro Der -> Avanza -> Giro Izq -> Avanza
+  switch (faseBusqueda) {
+    case 0: girarDerecha(velBusqueda); break;
+    case 1: avanzar(velBusqueda); break;
+    case 2: girarIzquierda(velBusqueda); break;
+    case 3: avanzar(velBusqueda); break;
+  }
+}
+
+void loop() {
+  // ... (Lectura y filtrado de sensores) ...
+  
+  // Lógica de Persistencia
+  if (ahora - tiempoUltimoDetectado < persistencia) {
+    if (ultimoLado == 1) girarIzquierda(velGiro);
+    else girarDerecha(velGiro);
+  } else {
+    // Si expira la persistencia, inicia máquina de estados
+    buscarOponente(); 
+  }
+}
+                </code></pre>
+            </div>
+        
+            <details style="margin-top: 1rem; cursor: pointer; color: var(--accent); font-family: var(--font-mono);">
+                <summary>Ver código fuente completo (Motores, Pines y Prioridades)</summary>
+                <div class="code-window" style="margin-top: 1rem; opacity: 0.8;">
+                    <pre><code style="font-size: 0.8rem;">
+#include <QTRSensors.h>
+
+// Motores
+#define AIN1  8
+#define AIN2  7
+#define PWMA  9
+#define BIN1  3
+#define BIN2  4
+#define PWMB  5
+
+// Sensores IR
+#define DIST_LEFT   A7
+#define DIST_RIGHT  A2
+#define DIST_FRONT  A5
+
+// Sensores de línea
+QTRSensors qtr;
+const uint8_t SensorCount = 2;
+uint16_t sensorValues[SensorCount];
+#define LINE_THRESHOLD 1000
+
+// Parametros
+int velAtaque       = 255;
+int velGiro         = 180;
+int velBusqueda     = 160;
+int limiteOponente  = 400;
+int persistencia    = 500;
+
+// Variables
+int distIzq, distDer, distFront;
+int ultimoLado = 1;
+unsigned long tiempoUltimoDetectado = 0;
+unsigned long tiempoBusqueda = 0;
+int faseBusqueda = 0;
+
+void setup() {
+  pinMode(AIN1, OUTPUT); pinMode(AIN2, OUTPUT);
+  pinMode(BIN1, OUTPUT); pinMode(BIN2, OUTPUT);
+  pinMode(PWMA, OUTPUT); pinMode(PWMB, OUTPUT);
+  pinMode(6, OUTPUT); digitalWrite(6, HIGH);
+
+  qtr.setTypeRC();
+  qtr.setSensorPins((const uint8_t[]){10, 12}, SensorCount);
+  Serial.begin(9600);
+  detener();
+  delay(5000);
+}
+
+void avanzar(int velocidad) {
+  digitalWrite(AIN1, LOW); digitalWrite(AIN2, HIGH);
+  digitalWrite(BIN1, LOW); digitalWrite(BIN2, HIGH);
+  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
+}
+
+void retroceder(int velocidad) {
+  digitalWrite(AIN1, HIGH); digitalWrite(AIN2, LOW);
+  digitalWrite(BIN1, HIGH); digitalWrite(BIN2, LOW);
+  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
+}
+
+void girarIzquierda(int velocidad) {
+  digitalWrite(AIN1, HIGH); digitalWrite(AIN2, LOW);
+  digitalWrite(BIN1, LOW); digitalWrite(BIN2, HIGH);
+  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
+}
+
+void girarDerecha(int velocidad) {
+  digitalWrite(AIN1, LOW); digitalWrite(AIN2, HIGH);
+  digitalWrite(BIN1, HIGH); digitalWrite(BIN2, LOW);
+  analogWrite(PWMA, velocidad); analogWrite(PWMB, velocidad);
+}
+
+void detener() {
+  analogWrite(PWMA, 0); analogWrite(PWMB, 0);
+}
+
+void buscarOponente() {
+  unsigned long ahora = millis();
+  unsigned long dt = ahora - tiempoBusqueda;
+  if (dt > 300) {
+    tiempoBusqueda = ahora;
+    faseBusqueda = (faseBusqueda + 1) % 4;
+  }
+  switch (faseBusqueda) {
+    case 0: girarDerecha(velBusqueda); break;
+    case 1: avanzar(velBusqueda); break;
+    case 2: girarIzquierda(velBusqueda); break;
+    case 3: avanzar(velBusqueda); break;
+  }
+}
+
+void loop() {
+  qtr.read(sensorValues);
+  uint16_t izq = sensorValues[0];
+  uint16_t der = sensorValues[1];
+
+  bool bordeIzq = izq > LINE_THRESHOLD;
+  bool bordeDer = der > LINE_THRESHOLD;
+
+  distIzq   = analogRead(DIST_LEFT);
+  distDer   = analogRead(DIST_RIGHT);
+  distFront = analogRead(DIST_FRONT);
+
+  unsigned long ahora = millis();
+
+  static int fIzq = 0, fDer = 0, fFront = 0;
+  fIzq   = (fIzq * 3 + distIzq) / 4;
+  fDer   = (fDer * 3 + distDer) / 4;
+  fFront = (fFront * 3 + distFront) / 4;
+
+  if (bordeIzq && !bordeDer) {
+    retroceder(velAtaque); delay(200);
+    girarDerecha(velAtaque); delay(200); return;
+  }
+
+  if (bordeDer && !bordeIzq) {
+    retroceder(velAtaque); delay(200);
+    girarIzquierda(velAtaque); delay(200); return;
+  }
+
+  if (bordeIzq && bordeDer) {
+    retroceder(velAtaque); delay(350);
+    girarDerecha(velAtaque); delay(200); return;
+  }
+
+  if (fFront > limiteOponente) {
+    avanzar(velAtaque);
+    tiempoUltimoDetectado = ahora; return;
+  }
+
+  if (fIzq > limiteOponente && fDer < limiteOponente - 30) {
+    girarIzquierda(velGiro);
+    ultimoLado = 1; tiempoUltimoDetectado = ahora; return;
+  }
+
+  if (fDer > limiteOponente && fIzq < limiteOponente - 30) {
+    girarDerecha(velGiro);
+    ultimoLado = -1; tiempoUltimoDetectado = ahora; return;
+  }
+
+  if (fIzq > limiteOponente && fDer > limiteOponente) {
+    if (ultimoLado == 1) girarIzquierda(velGiro);
+    else girarDerecha(velGiro);
+    tiempoUltimoDetectado = ahora; return;
+  }
+
+  if (ahora - tiempoUltimoDetectado < persistencia) {
+    if (ultimoLado == 1) girarIzquierda(velGiro);
+    else girarDerecha(velGiro);
+  } else {
+    buscarOponente();
+  }
+  delay(10);
+}
+                    </code></pre>
+                </div>
+            </details>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-number">05.</h2>
+            <h3>Desempeño en Competencia</h3>
+            <p style="text-align: center; margin-bottom: 2rem;">Acción en la arena durante el torneo de la UTT.</p>
+            
+            <div class="video-short-imponente">
+                <iframe src="https://www.youtube.com/embed/TU_VIDEO_AQUI" frameborder="0" allowfullscreen></iframe>
+            </div>
+            
+            <div class="pro-card" style="margin-top: 3rem;">
+                <p><strong>Estado Actual:</strong> El robot demostró un incremento sustancial en fiabilidad gracias a la placa PCB y al algoritmo de búsqueda por fases. <em>(Certificado de participación oficial en espera de emisión por parte del comité organizador).</em></p>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p>angelomar-eng // Portafolio de Ingeniería © 2026</p>
+        <p>angelomar-eng // UTT 2026 // Ingeniería en Evolución</p>
     </footer>
 
 </body>
